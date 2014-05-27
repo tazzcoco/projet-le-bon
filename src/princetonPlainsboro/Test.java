@@ -33,6 +33,8 @@ class Test {
         System.out.println();
         System.out.println("Dossier trie selon les dates :");
         dm.trierDates();
+        System.out.println(" ");
+        dm.afficherListeEntre(new Date(1,10,2005),new Date(15,11,2005));
 
         System.out.println("\n********\n");
 

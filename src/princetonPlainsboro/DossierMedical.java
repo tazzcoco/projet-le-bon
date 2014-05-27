@@ -1,6 +1,7 @@
 package princetonPlainsboro;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
@@ -157,8 +158,10 @@ class DossierMedical {
     }
 
     public void afficherListeEntre(Date d1, Date d2) {
+        //creation d'une liste de fiche de soins dont les dates sont comprises entre d1 et d2
         List<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
-        System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2);
+        System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2 +" : \n");
+        //on remplit la liste lf
         for (int i = 0; i < fiches.size(); i++) {
             if (d1.compareTo(d2) < 0) {
                 if ((fiches.get(i).getDate().compareTo(d1) > 0) && (fiches.get(i).getDate().compareTo(d2) < 0)) {
@@ -170,13 +173,38 @@ class DossierMedical {
                         lf.add(fiches.get(i));
                     }
                 }
+            }            
+        }
+        //on utilise le même code que dans trierDates, appliqué ici à la liste lf et non au dossier médical entier.
+        while (!lf.isEmpty()) {
+            // on cherche la fiche de soins de date minimale :
+            int imin = 0;
+            FicheDeSoins f1 = lf.get(imin);
+            for (int j = 1; j < lf.size(); j++) {
+                FicheDeSoins f2 = lf.get(j);
+                if (f2.getDate().compareTo(f1.getDate()) < 0) {
+                    imin = j;
+                    f1 = f2;
+                }
             }
-            lf.get(i).afficher();
+            // on affiche la fiche de soins trouvee :
+            f1.afficher();
+            System.out.println("------------------------");
+            //on la supprime de la liste :
+            lf.remove(imin);
         }
     }
 
     public void afficherListeCoutCroissant() {
-
+        ArrayList<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
+        int indexcoutmin = 0;
+        for (int j = 0; j < fiches.size(); j++) {
+            for (int i = 1; i < fiches.size(); i++) {
+                if (fiches.get(i).coutTotal() < fiches.get(indexcoutmin).coutTotal()) {
+                    indexcoutmin = i;
+                }
+            }
+        }
     }
 
     public void ajouterPatient() {
