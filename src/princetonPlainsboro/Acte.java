@@ -9,6 +9,7 @@ class Acte {
         this.coef = coef;
         }
     
+    @Override
     public String toString() {
         return code.toString() + ", coefficient : " + coef;
         }
