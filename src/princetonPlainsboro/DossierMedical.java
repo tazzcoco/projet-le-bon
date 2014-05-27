@@ -1,12 +1,12 @@
 package princetonPlainsboro;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 class DossierMedical {
 
     private List<FicheDeSoins> fiches;     // contient des objets de classe 'FicheDeSoins'
-
 
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide
@@ -133,5 +133,58 @@ class DossierMedical {
             copieFiches.remove(imin);
         }
     }
-}
 
+    public void afficherListePatients() {
+        ArrayList<Patient> lp = new ArrayList<Patient>();
+        System.out.println("\nListe des patients :");
+        for (int i = 0; i < fiches.size(); i++) {
+            if (!lp.contains(fiches.get(i).getPatient())) {
+                lp.add(fiches.get(i).getPatient());
+                System.out.println(fiches.get(i).getPatient().getNom() + " " + fiches.get(i).getPatient().getPrenom());
+            }
+        }
+    }
+
+    public void afficherListeMedecins() {
+        ArrayList<Medecin> lm = new ArrayList<Medecin>();
+        System.out.println("\nListe des médecins :");
+        for (int i = 0; i < fiches.size(); i++) {
+            if (!lm.contains(fiches.get(i).getMedecin())) {
+                lm.add(fiches.get(i).getMedecin());
+                System.out.println(fiches.get(i).getMedecin().getNom() + " " + fiches.get(i).getMedecin().getPrenom());
+            }
+        }
+    }
+
+    public void afficherListeEntre(Date d1, Date d2) {
+        List<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
+        System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2);
+        for (int i = 0; i < fiches.size(); i++) {
+            if (d1.compareTo(d2) < 0) {
+                if ((fiches.get(i).getDate().compareTo(d1) > 0) && (fiches.get(i).getDate().compareTo(d2) < 0)) {
+                    lf.add(fiches.get(i));
+                }
+            } else {
+                if (d1.compareTo(d2) > 0) {
+                    if ((fiches.get(i).getDate().compareTo(d1) < 0) && (fiches.get(i).getDate().compareTo(d2) > 0)) {
+                        lf.add(fiches.get(i));
+                    }
+                }
+            }
+
+        }
+        //System.out.println(lf.get(i).afficher());
+    }
+
+    public void afficherListeCoutCroissant() {
+
+    }
+
+    public void ajouterPatient() {
+
+    }
+
+    public void retirerPatient() {
+
+    }
+}
