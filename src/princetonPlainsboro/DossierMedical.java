@@ -171,9 +171,8 @@ class DossierMedical {
                     }
                 }
             }
-
+            lf.get(i).afficher();
         }
-        //System.out.println(lf.get(i).afficher());
     }
 
     public void afficherListeCoutCroissant() {
