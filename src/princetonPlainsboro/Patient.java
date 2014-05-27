@@ -7,17 +7,19 @@ class Patient {
     private int numSecu;
     private String adresse;
     private Date dateNaissance;
+    
 
     public Patient(String nom, String prenom) {
         this.nom = nom;
-        this.prenom = prenom;
+        this.prenom = prenom;        
     }
 
-    public Patient(String nom, String prenom, int numSecu, String adresse) {
+    public Patient(String nom, String prenom, Date dateNaissance, int numSecu, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.numSecu = numSecu;
         this.adresse = adresse;
+        this.dateNaissance = dateNaissance;
     }
 
     public String toString() {

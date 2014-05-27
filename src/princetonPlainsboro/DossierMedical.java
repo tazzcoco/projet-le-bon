@@ -1,13 +1,23 @@
 package princetonPlainsboro;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 class DossierMedical {
 
-    private List<FicheDeSoins> fiches;     // contient des objets de classe 'FicheDeSoins'
+    private List<FicheDeSoins> fiches;  
+    private List<Patient> patients;
+    private List<Medecin> medecins;
+    
 
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide
@@ -115,6 +125,7 @@ class DossierMedical {
     // tri generique :
     public void trier(ComparaisonFiches c) {
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
+        DecimalFormat dec = new DecimalFormat("0.00");
 
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins minimale :
@@ -129,6 +140,7 @@ class DossierMedical {
             }
             // on affiche la fiche de soins trouvee :
             f1.afficher();
+            System.out.println("Cout total des soins : " + dec.format(f1.coutTotal()));
             System.out.println("------------------------");
             //on la supprime de la liste :
             copieFiches.remove(imin);
@@ -136,23 +148,27 @@ class DossierMedical {
     }
 
     public void afficherListePatients() {
+        //on créé une liste de patient
         ArrayList<Patient> lp = new ArrayList<Patient>();
         System.out.println("\nListe des patients :");
+        //on la remplit et on affiche chaque patient sous la forme : NOM Prenom
         for (int i = 0; i < fiches.size(); i++) {
             if (!lp.contains(fiches.get(i).getPatient())) {
                 lp.add(fiches.get(i).getPatient());
-                System.out.println(fiches.get(i).getPatient().getNom() + " " + fiches.get(i).getPatient().getPrenom());
+                System.out.println(fiches.get(i).getPatient().getNom().toUpperCase() + " " + fiches.get(i).getPatient().getPrenom());
             }
         }
     }
 
     public void afficherListeMedecins() {
+        //même principe que pour afficherListePatients, on créé une liste de médecins en premier
         ArrayList<Medecin> lm = new ArrayList<Medecin>();
         System.out.println("\nListe des médecins :");
+        //on la remplit et on affiche chaque médecin sous la forme : NOM Prenom
         for (int i = 0; i < fiches.size(); i++) {
             if (!lm.contains(fiches.get(i).getMedecin())) {
                 lm.add(fiches.get(i).getMedecin());
-                System.out.println(fiches.get(i).getMedecin().getNom() + " " + fiches.get(i).getMedecin().getPrenom());
+                System.out.println(fiches.get(i).getMedecin().getNom().toUpperCase() + " " + fiches.get(i).getMedecin().getPrenom());
             }
         }
     }
@@ -160,7 +176,7 @@ class DossierMedical {
     public void afficherListeEntre(Date d1, Date d2) {
         //creation d'une liste de fiche de soins dont les dates sont comprises entre d1 et d2
         List<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
-        System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2 +" : \n");
+        System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2 + " : \n");
         //on remplit la liste lf
         for (int i = 0; i < fiches.size(); i++) {
             if (d1.compareTo(d2) < 0) {
@@ -173,7 +189,7 @@ class DossierMedical {
                         lf.add(fiches.get(i));
                     }
                 }
-            }            
+            }
         }
         //on utilise le même code que dans trierDates, appliqué ici à la liste lf et non au dossier médical entier.
         while (!lf.isEmpty()) {
@@ -196,19 +212,44 @@ class DossierMedical {
     }
 
     public void afficherListeCoutCroissant() {
-        ArrayList<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
-        int indexcoutmin = 0;
-        for (int j = 0; j < fiches.size(); j++) {
-            for (int i = 1; i < fiches.size(); i++) {
-                if (fiches.get(i).coutTotal() < fiches.get(indexcoutmin).coutTotal()) {
-                    indexcoutmin = i;
-                }
-            }
-        }
+        trier(new ComparaisonFichesCouts());
     }
 
     public void ajouterPatient() {
+        JTextField FieldPrenom = new JTextField(5);
+        JTextField FieldNom = new JTextField(7);
+        JTextField FieldBirth1 = new JTextField(2);
+        JTextField FieldBirth2 = new JTextField(2);
+        JTextField FieldBirth3 = new JTextField(4);
+        JTextField FieldNumSecu = new JTextField(5);
+        JTextField FieldAdresse = new JTextField(10);
 
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("Nom :"));
+        myPanel.add(FieldNom);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer        
+        myPanel.add(new JLabel("Prénom :"));
+        myPanel.add(FieldPrenom);
+        myPanel.add(Box.createVerticalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Date de Naissance :"));
+        myPanel.add(FieldBirth1);
+        myPanel.add(Box.createVerticalStrut(3)); // a spacer        
+        myPanel.add(FieldBirth2);
+        myPanel.add(Box.createVerticalStrut(3)); // a spacer        
+        myPanel.add(FieldBirth3);
+        myPanel.add(Box.createVerticalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Adresse :"));       
+        myPanel.add(FieldAdresse);
+        myPanel.add(Box.createVerticalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Numéro de sécurité sociale :"));
+        myPanel.add(FieldNumSecu);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            Patient p = new Patient(FieldNom.getText(),FieldPrenom.getText(),new Date(Integer.parseInt(FieldBirth1.getText()),Integer.parseInt(FieldBirth2.getText()),Integer.parseInt(FieldBirth3.getText())),Integer.parseInt(FieldNumSecu.getText()),FieldAdresse.getText());
+            System.out.println("Patient ajouté !");
+        }
     }
 
     public void retirerPatient() {

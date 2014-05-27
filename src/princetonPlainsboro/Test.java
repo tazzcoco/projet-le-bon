@@ -40,6 +40,8 @@ class Test {
 
         System.out.println();
         System.out.println("Dossier trie selon les couts :");
-        dm.trier(new ComparaisonFichesCouts());
+        dm.afficherListeCoutCroissant();
+        
+        dm.ajouterPatient();
     }
 }
