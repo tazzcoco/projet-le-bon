@@ -16,4 +16,5 @@ class Acte {
     public double cout() {
         return code.calculerCout(coef);
         }
+    //pd
     }
