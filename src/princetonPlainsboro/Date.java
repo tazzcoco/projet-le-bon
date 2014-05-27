@@ -14,7 +14,7 @@ class Date implements Comparable {
         this.annee = annee;
         }
     
-    // toto
+    
     public Date(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
         this.mois = mois;
