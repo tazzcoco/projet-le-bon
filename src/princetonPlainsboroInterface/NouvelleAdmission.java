@@ -15,10 +15,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
     
     
-    /**
-     * Creates new form NouvelleAdmission
-     */
-    private NouvelleAdmissionListener nal;
+    private final NouvelleAdmissionListener nal;
 
 
     public NouvelleAdmission() {
@@ -102,9 +99,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
         jComboBox2.setBackground(new java.awt.Color(153, 0, 153));
         jComboBox2.setForeground(new java.awt.Color(153, 153, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "m�decin" }));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "médecin" }));
-
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15" };
@@ -116,8 +111,6 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(153, 153, 255));
         jTextField1.setFont(new java.awt.Font("Hurry Up", 1, 36)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 0, 102));
-
-        jTextField1.setText("TM�");
         jTextField1.setText("TM²");
         jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +127,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -153,7 +146,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 214, Short.MAX_VALUE))
+                        .addGap(0, 203, Short.MAX_VALUE))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
@@ -230,9 +223,6 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-public JButton getJButton1() {
-        return jButton1;
-    }
 
     public class NouvelleAdmissionListener implements ActionListener {
 
