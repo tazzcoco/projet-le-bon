@@ -25,8 +25,6 @@ class DossierMedical {
 
     public void ajouterFiche(FicheDeSoins fiche) {
         fiches.add(fiche);
-        patients.add(fiche.getPatient());
-        medecins.add(fiche.getMedecin());
     }
 
     public void afficher() {
