@@ -14,10 +14,9 @@ import javax.swing.JTextField;
 
 class DossierMedical {
 
-    private List<FicheDeSoins> fiches;  
+    private List<FicheDeSoins> fiches;
     private List<Patient> patients;
     private List<Medecin> medecins;
-    
 
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide
@@ -25,6 +24,8 @@ class DossierMedical {
 
     public void ajouterFiche(FicheDeSoins fiche) {
         fiches.add(fiche);
+        patients.add(fiche.getPatient());
+        medecins.add(fiche.getMedecin());
     }
 
     public void afficher() {
@@ -238,7 +239,7 @@ class DossierMedical {
         myPanel.add(Box.createVerticalStrut(3)); // a spacer        
         myPanel.add(FieldBirth3);
         myPanel.add(Box.createVerticalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Adresse :"));       
+        myPanel.add(new JLabel("Adresse :"));
         myPanel.add(FieldAdresse);
         myPanel.add(Box.createVerticalStrut(15)); // a spacer
         myPanel.add(new JLabel("Numéro de sécurité sociale :"));
@@ -247,12 +248,15 @@ class DossierMedical {
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            Patient p = new Patient(FieldNom.getText(),FieldPrenom.getText(),new Date(Integer.parseInt(FieldBirth1.getText()),Integer.parseInt(FieldBirth2.getText()),Integer.parseInt(FieldBirth3.getText())),Integer.parseInt(FieldNumSecu.getText()),FieldAdresse.getText());
+            Patient p = new Patient(FieldNom.getText(), FieldPrenom.getText(), new Date(Integer.parseInt(FieldBirth1.getText()), Integer.parseInt(FieldBirth2.getText()), Integer.parseInt(FieldBirth3.getText())), Integer.parseInt(FieldNumSecu.getText()), FieldAdresse.getText());
+            patients.add(p);
             System.out.println("Patient ajouté !");
         }
     }
 
     public void retirerPatient(Patient p) {
-
+        patients.remove(p);
+        p = null;
     }
+    //coucou
 }

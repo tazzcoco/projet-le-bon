@@ -47,10 +47,10 @@ class Test {
         dm.afficherListePatients();
         System.out.println("\n");
         dm.afficherListeMedecins();
+        System.out.println("\n");
 
         Patient p2 = new Patient("Toto", "TOTO", new Date(6, 6, 1991), 2, "blabla");
         Patient p3 = new Patient("Tata", "TATA", new Date(6, 2, 1991), 2, "blabla");
-        System.out.println(p2.calculAge());
-        System.out.println(p3.calculAge());
+        p2.afficherDP();
     }
 }

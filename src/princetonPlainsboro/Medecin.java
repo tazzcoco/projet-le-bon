@@ -29,6 +29,14 @@ class Medecin {
     public String getNom() {
         return nom;
     }
+    
+    public String getNumTel(){
+        return numTel;
+    }
+    
+    public String getMdp(){
+        return mdp;
+    }
 
     public String getPrenom() {
         return prenom;
