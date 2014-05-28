@@ -3,18 +3,20 @@ package princetonPlainsboro;
 import java.util.Calendar;
 
 class Patient {
-
+    //attributs
     private String nom;
     private String prenom;
     private int numSecu;
     private String adresse;
     private Date dateNaissance;
-
+    
+    //constructeur 1
     public Patient(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
-
+    
+    //constructeur 2
     public Patient(String nom, String prenom, Date dateNaissance, int numSecu, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
@@ -36,6 +38,7 @@ class Patient {
         }
     }
 
+    //accesseurs
     public String getNom() {
         return nom;
     }
@@ -56,6 +59,7 @@ class Patient {
         return dateNaissance;
     }
     
+    //méthode pour calculer l'age d'un patient
     public int calculAge(){
         Calendar curr = Calendar.getInstance();
         int yeardiff = curr.get(Calendar.YEAR) - dateNaissance.getAnnee();
@@ -65,12 +69,13 @@ class Patient {
             if (dateNaissance.getMois() == curr.get(Calendar.MONTH)) {
                 if (dateNaissance.getJour() > curr.get(Calendar.DAY_OF_MONTH)) {
                     yeardiff = yeardiff - 1;
-                }
-            } 
-        }
+                }//end if
+            }//end if
+        }//end if/else
         return yeardiff;
     }
-
+    
+    //méthode affichant le dossier patient, le tableau des actes concernant un patient est instancié dans l'interface DossierPatient
     public void afficherDP() {
         System.out.println("Dossier Patient");
         System.out.println("Nom : " + nom);

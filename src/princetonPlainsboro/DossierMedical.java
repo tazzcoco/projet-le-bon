@@ -13,11 +13,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 class DossierMedical {
+    //attributs
+    private List<FicheDeSoins> fiches; //liste des fiches de soins 
+    private List<Patient> patients; //liste des patients
+    private List<Medecin> medecins; //liste des médecins
 
-    private List<FicheDeSoins> fiches;
-    private List<Patient> patients;
-    private List<Medecin> medecins;
-
+    //constructeur
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide
     }
@@ -157,8 +158,8 @@ class DossierMedical {
             if (!lp.contains(fiches.get(i).getPatient())) {
                 lp.add(fiches.get(i).getPatient());
                 System.out.println(fiches.get(i).getPatient().getNom().toUpperCase() + " " + fiches.get(i).getPatient().getPrenom());
-            }
-        }
+            }//end if
+        }//end for
     }
 
     public void afficherListeMedecins() {
@@ -170,8 +171,8 @@ class DossierMedical {
             if (!lm.contains(fiches.get(i).getMedecin())) {
                 lm.add(fiches.get(i).getMedecin());
                 System.out.println(fiches.get(i).getMedecin().getNom().toUpperCase() + " " + fiches.get(i).getMedecin().getPrenom());
-            }
-        }
+            }//end if
+        }//end for
     }
 
     public void afficherFichesEntre(Date d1, Date d2) {
@@ -183,15 +184,15 @@ class DossierMedical {
             if (d1.compareTo(d2) < 0) {
                 if ((fiches.get(i).getDate().compareTo(d1) > 0) && (fiches.get(i).getDate().compareTo(d2) < 0)) {
                     lf.add(fiches.get(i));
-                }
+                }//end if
             } else {
                 if (d1.compareTo(d2) > 0) {
                     if ((fiches.get(i).getDate().compareTo(d1) < 0) && (fiches.get(i).getDate().compareTo(d2) > 0)) {
                         lf.add(fiches.get(i));
-                    }
-                }
-            }
-        }
+                    }//end if
+                }//end if
+            }//end if/else
+        }//end for
         //on utilise le même code que dans trierDates, appliqué ici à la liste lf et non au dossier médical entier.
         while (!lf.isEmpty()) {
             // on cherche la fiche de soins de date minimale :
@@ -202,8 +203,8 @@ class DossierMedical {
                 if (f2.getDate().compareTo(f1.getDate()) < 0) {
                     imin = j;
                     f1 = f2;
-                }
-            }
+                }//end if
+            }//end for
             // on affiche la fiche de soins trouvee :
             f1.afficher();
             System.out.println("------------------------");
@@ -217,6 +218,7 @@ class DossierMedical {
     }
 
     public void ajouterPatient() {
+        //creation des JTextFields pour récupérer les renseignements du patient
         JTextField FieldPrenom = new JTextField(5);
         JTextField FieldNom = new JTextField(7);
         JTextField FieldBirth1 = new JTextField(2);
@@ -224,7 +226,7 @@ class DossierMedical {
         JTextField FieldBirth3 = new JTextField(4);
         JTextField FieldNumSecu = new JTextField(5);
         JTextField FieldAdresse = new JTextField(10);
-
+        //organisation de la fenêtre d'entrée utilisateur
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("Nom :"));
         myPanel.add(FieldNom);
@@ -244,14 +246,14 @@ class DossierMedical {
         myPanel.add(Box.createVerticalStrut(15)); // a spacer
         myPanel.add(new JLabel("Numéro de sécurité sociale :"));
         myPanel.add(FieldNumSecu);
-
+        //instanciation de la fenêtre d'entrée utilisateur
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             Patient p = new Patient(FieldNom.getText(), FieldPrenom.getText(), new Date(Integer.parseInt(FieldBirth1.getText()), Integer.parseInt(FieldBirth2.getText()), Integer.parseInt(FieldBirth3.getText())), Integer.parseInt(FieldNumSecu.getText()), FieldAdresse.getText());
             patients.add(p);
             System.out.println("Patient ajouté !");
-        }
+        }//end if
     }
 
     public void retirerPatient(Patient p) {

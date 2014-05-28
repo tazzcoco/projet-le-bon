@@ -1,19 +1,21 @@
 package princetonPlainsboro;
 
 class Medecin {
-
+    //attributs
     private String nom;
     private String prenom;
     private String specialite;
     private String numTel;
     private String mdp;
-
+    
+    //constructeur 1
     public Medecin(String nom, String prenom, String specialite) {
         this.nom = nom;
         this.prenom = prenom;
         this.specialite = specialite;
     }
 
+    //contructeur 2
     public Medecin(String nom, String prenom, String specialite, String numTel, String mdp) {
         this.nom = nom;
         this.prenom = prenom;
@@ -22,6 +24,7 @@ class Medecin {
         this.mdp = mdp;
     }
 
+    //accesseurs
     public String getSpecialite() {
         return specialite;
     }
