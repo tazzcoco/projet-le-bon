@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
-/**
- *
- * @author Manounette
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class DossierPatientAdministratif extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DossierPatientAdministratif
-     */
+    private final DossierPatientAdministratifListener dpal;
+
     public DossierPatientAdministratif() {
         initComponents();
+        dpal = new DossierPatientAdministratifListener();
+        jButton1.addActionListener(dpal);
+        jButton2.addActionListener(dpal);
+        jButton4.addActionListener(dpal);
+        jButton5.addActionListener(dpal);
+        jButton6.addActionListener(dpal);
     }
 
     /**
@@ -194,4 +197,25 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    public class DossierPatientAdministratifListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source == jButton1) {
+                new ListePatientsAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+
+            } else if (source == jButton4) {
+
+            } else if (source == jButton5) {
+                new ListePatientsAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton6) {
+                new ListeMédecinsAdministratif().setVisible(true);
+                setVisible(false);
+            }
+        }
+    }
 }
