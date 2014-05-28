@@ -11,7 +11,6 @@ package princetonPlainsboroInterface;
  * @author Thomas
  */
 public class PrincetonInterface extends javax.swing.JFrame {
-
     /**
      * Creates new form PrincetonInterface
      */
@@ -63,7 +62,7 @@ public class PrincetonInterface extends javax.swing.JFrame {
         jFormattedTextField1.setText("login");
         jFormattedTextField1.setFont(new java.awt.Font("sansserif", 2, 12)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "médecin", "personnel adm" }));
 
         jTextField1.setBackground(new java.awt.Color(153, 153, 255));
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,7 +83,7 @@ public class PrincetonInterface extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(153, 153, 255));
         jTextField3.setFont(new java.awt.Font("Hurry Up", 1, 36)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(102, 0, 102));
-        jTextField3.setText("MT�");
+        jTextField3.setText("MT²");
         jTextField3.setBorder(null);
 
         jButton1.setBackground(new java.awt.Color(102, 0, 102));

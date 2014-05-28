@@ -3,24 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+import javax.swing.JButton;
+>>>>>>> 5ec2451276cd0a2d02471707b7d4a2958d240957
 
 /**
  *
  * @author Thomas
  */
 public class NouvelleAdmission extends javax.swing.JFrame {
+<<<<<<< HEAD
     
     
     /**
      * Creates new form NouvelleAdmission
      */
+=======
+
+    private NouvelleAdmissionListener nal;
+
+>>>>>>> 5ec2451276cd0a2d02471707b7d4a2958d240957
     public NouvelleAdmission() {
         initComponents();
+        nal = new NouvelleAdmissionListener();
+        jButton1.addActionListener(nal);
+
     }
 
     /**
@@ -59,6 +71,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(153, 153, 255));
         jButton1.setText("retour");
 
+        jList1.setBackground(new java.awt.Color(255, 255, 255));
         jList1.setForeground(new java.awt.Color(0, 0, 0));
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Liste patient", "Fiches soin", "Liste medecin" };
@@ -96,7 +109,11 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
         jComboBox2.setBackground(new java.awt.Color(153, 0, 153));
         jComboBox2.setForeground(new java.awt.Color(153, 153, 255));
+<<<<<<< HEAD
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "m�decin" }));
+=======
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "médecin" }));
+>>>>>>> 5ec2451276cd0a2d02471707b7d4a2958d240957
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15" };
@@ -108,7 +125,11 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(153, 153, 255));
         jTextField1.setFont(new java.awt.Font("Hurry Up", 1, 36)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 0, 102));
+<<<<<<< HEAD
         jTextField1.setText("TM�");
+=======
+        jTextField1.setText("TM²");
+>>>>>>> 5ec2451276cd0a2d02471707b7d4a2958d240957
         jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,4 +241,19 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+public JButton getJButton1() {
+        return jButton1;
+    }
+
+    public class NouvelleAdmissionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source == jButton1) {
+                new MenuMedical().setVisible(true);
+                setVisible(false);
+            }
+        }
+    }
 }
