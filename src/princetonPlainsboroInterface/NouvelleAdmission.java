@@ -100,6 +100,11 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jComboBox2.setBackground(new java.awt.Color(153, 0, 153));
         jComboBox2.setForeground(new java.awt.Color(153, 153, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "médecin" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15" };
@@ -174,6 +179,10 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -203,6 +212,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new NouvelleAdmission().setVisible(true);
             }
