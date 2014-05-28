@@ -6,24 +6,30 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-class DossierMedical {
+public class DossierMedical {
     //attributs
     private List<FicheDeSoins> fiches; //liste des fiches de soins 
-    private List<Patient> patients; //liste des patients
+    private DefaultListModel<Patient> patients; //liste des patients
     private List<Medecin> medecins; //liste des médecins
     
     public List<FicheDeSoins> getFiches(){
         return fiches;
     }
+    public DefaultListModel<Patient> getPatients(){
+        return patients;
+    }
     //constructeur
     public DossierMedical() {
-        fiches = new Vector<FicheDeSoins>();  // liste vide
+        fiches = new Vector<FicheDeSoins>();
+        patients = new DefaultListModel();
+// liste vide
     }
 
     public void ajouterFiche(FicheDeSoins fiche) {
@@ -252,13 +258,13 @@ class DossierMedical {
                 "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             Patient p = new Patient(FieldNom.getText(), FieldPrenom.getText(), new Date(Integer.parseInt(FieldBirth1.getText()), Integer.parseInt(FieldBirth2.getText()), Integer.parseInt(FieldBirth3.getText())), Integer.parseInt(FieldNumSecu.getText()), FieldAdresse.getText());
-            patients.add(p);
+            patients.addElement(p);
             System.out.println("Patient ajouté !");
         }//end if
     }
 
     public void retirerPatient(Patient p) {
-        patients.remove(p);
+        patients.removeElement(p);
         p = null;
     }
     //coucou

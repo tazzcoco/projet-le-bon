@@ -2,7 +2,7 @@ package princetonPlainsboro;
 
 import java.util.Calendar;
 
-class Patient {
+public class Patient {
     //attributs
     private String nom;
     private String prenom;

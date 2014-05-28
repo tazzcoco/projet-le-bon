@@ -6,17 +6,23 @@
 
 package princetonPlainsboroInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Manounette
  */
 public class DossierMedecinMedical extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DossierMedecinMedical
-     */
+    private DossierMedecinMedicalListener dmml;
     public DossierMedecinMedical() {
         initComponents();
+        dmml = new DossierMedecinMedicalListener();
+        jButton1.addActionListener(dmml);
+        jButton2.addActionListener(dmml);
+        jButton3.addActionListener(dmml);
+        jButton4.addActionListener(dmml);
     }
 
     /**
@@ -178,4 +184,24 @@ public class DossierMedecinMedical extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+public class DossierMedecinMedicalListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source == jButton1) {
+                new MenuMedical().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                new NouvelleAdmission().setVisible(true);
+                setVisible(false);
+            }else if (source == jButton3) {
+                new FicheDeSoins().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton4) {
+                new ListeMedecinMedical().setVisible(true);
+                setVisible(false);
+            }
+        }
+    }
 }

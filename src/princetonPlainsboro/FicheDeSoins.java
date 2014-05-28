@@ -3,7 +3,7 @@ package princetonPlainsboro;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
-class FicheDeSoins {
+public class FicheDeSoins {
 
     //attributs
     private Patient patient;

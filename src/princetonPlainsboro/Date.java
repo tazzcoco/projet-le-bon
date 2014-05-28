@@ -1,6 +1,6 @@
 package princetonPlainsboro;
 
-class Date implements Comparable {
+public class Date implements Comparable {
     //attributs
     private int jour;
     private int mois;
