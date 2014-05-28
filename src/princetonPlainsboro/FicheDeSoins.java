@@ -1,11 +1,11 @@
 package princetonPlainsboro;
 
+import java.text.DecimalFormat;
 import java.util.Vector;
 
 class FicheDeSoins {
 
     //attributs
-
     private Patient patient;
     private Medecin medecin;
     private Date date;
@@ -43,6 +43,7 @@ class FicheDeSoins {
 
     //affichage d'une fiche de soins
     public void afficher() {
+        DecimalFormat dec = new DecimalFormat("0.00");
         System.out.println("Fiche de soins du " + date.toString());
         System.out.println("- medecin : " + medecin.toString());
         System.out.println("- patient : " + patient.toString());
@@ -51,6 +52,8 @@ class FicheDeSoins {
             Acte a = actes.get(i);
             System.out.println("    > " + a.toString());
         }
+        System.out.println("Cout total des soins : " + dec.format(coutTotal()));
+        System.out.println("------------------------");
     }
 
     //calcul de cout total d'une fiche

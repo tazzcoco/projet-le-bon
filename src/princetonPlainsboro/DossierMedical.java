@@ -17,7 +17,10 @@ class DossierMedical {
     private List<FicheDeSoins> fiches; //liste des fiches de soins 
     private List<Patient> patients; //liste des patients
     private List<Medecin> medecins; //liste des médecins
-
+    
+    public List<FicheDeSoins> getFiches(){
+        return fiches;
+    }
     //constructeur
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide

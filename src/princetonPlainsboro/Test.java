@@ -52,5 +52,7 @@ class Test {
         Patient p2 = new Patient("Toto", "TOTO", new Date(6, 6, 1991), 2, "blabla");
         Patient p3 = new Patient("Tata", "TATA", new Date(6, 2, 1991), 2, "blabla");
         p2.afficherDP();
+        
+        dm.getFiches().get(1).afficher();
     }
 }
