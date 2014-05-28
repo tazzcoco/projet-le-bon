@@ -6,17 +6,19 @@
 
 package princetonPlainsboroInterface;
 
-/**
- *
- * @author Manounette
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 public class ListePatientsAdministratif extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListePatientsAdministratif
-     */
+    private ListePatientsAdministratifListener lpal;
     public ListePatientsAdministratif() {
         initComponents();
+        lpal = new ListePatientsAdministratifListener();
+        jButton1.addActionListener(lpal);
+        jButton2.addActionListener(lpal);
+        jButton3.addActionListener(lpal);
     }
 
     /**
@@ -215,4 +217,22 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+public class ListePatientsAdministratifListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source == jButton1) {
+                new MenuAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                new ListePatientsAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton3) {
+                new ListeMédecinsAdministratif().setVisible(true);
+                setVisible(false);
+            }
+        }
+    }
 }
+

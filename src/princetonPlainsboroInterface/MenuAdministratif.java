@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -12,11 +14,14 @@ package princetonPlainsboroInterface;
  */
 public class MenuAdministratif extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuAdministratif
-     */
+    private MenuAdministratifListener mal;
+
     public MenuAdministratif() {
         initComponents();
+        mal = new MenuAdministratifListener();
+        jButton1.addActionListener(mal);
+        jButton2.addActionListener(mal);
+        jButton3.addActionListener(mal);
     }
 
     /**
@@ -171,4 +176,21 @@ public class MenuAdministratif extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+ public class MenuAdministratifListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source == jButton1) {
+                new ListePatientsAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                new ListeMédecinsAdministratif().setVisible(true);
+                setVisible(false);
+            } else if (source == jButton3) {
+                new PrincetonInterface().setVisible(true);
+                setVisible(false);
+            }
+        }
+    }
 }
