@@ -34,14 +34,23 @@ class Test {
         System.out.println("Dossier trie selon les dates :");
         dm.trierDates();
         System.out.println(" ");
-        dm.afficherListeEntre(new Date(1,10,2005),new Date(15,11,2005));
+        dm.afficherListeEntre(new Date(1, 10, 2005), new Date(15, 11, 2005));
 
         System.out.println("\n********\n");
 
         System.out.println();
         System.out.println("Dossier trie selon les couts :");
         dm.afficherListeCoutCroissant();
-        
-        dm.ajouterPatient();
+
+        //dm.ajouterPatient();
+
+        dm.afficherListePatients();
+        System.out.println("\n");
+        dm.afficherListeMedecins();
+
+        Patient p2 = new Patient("Toto", "TOTO", new Date(6, 6, 1991), 2, "blabla");
+        Patient p3 = new Patient("Tata", "TATA", new Date(6, 2, 1991), 2, "blabla");
+        System.out.println(p2.calculAge());
+        System.out.println(p3.calculAge());
     }
 }

@@ -22,16 +22,15 @@ class Date implements Comparable {
         this.heure = heure;
         this.minute = minute;
     }
-
-    
+       
     public String toString() {
-        return jour + "/" + mois + "/" + annee;
+        return getJour() + "/" + getMois() + "/" + getAnnee();
         }
     
     public boolean equals(Object o) {
         if (o instanceof Date) {
             Date d = (Date)o;
-            return (annee == d.annee) && (mois == d.mois) && (jour == d.jour);
+            return (getAnnee() == d.getAnnee()) && (getMois() == d.getMois()) && (getJour() == d.getJour());
             }
         else
             return false;
@@ -40,13 +39,48 @@ class Date implements Comparable {
     // precondition : 'o' est une instance de 'Date' :
     public int compareTo(Object o) {
         Date d = (Date)o;
-        if (annee != d.annee)
-            return annee - d.annee;
+        if (getAnnee() != d.getAnnee())
+            return getAnnee() - d.getAnnee();
         // ici on a forcement annee == d.annee :
-        if (mois != d.mois)
-            return mois  - d.mois;
+        if (getMois() != d.getMois())
+            return getMois()  - d.getMois();
         // ici on a forcement annee == d.annee et mois == d.mois :
-        return jour - d.jour;
+        return getJour() - d.getJour();
         }
+
+    /**
+     * @return the jour
+     */
+    public int getJour() {
+        return jour;
+    }
+
+    /**
+     * @return the mois
+     */
+    public int getMois() {
+        return mois;
+    }
+
+    /**
+     * @return the annee
+     */
+    public int getAnnee() {
+        return annee;
+    }
+
+    /**
+     * @return the heure
+     */
+    public int getHeure() {
+        return heure;
+    }
+
+    /**
+     * @return the minute
+     */
+    public int getMinute() {
+        return minute;
+    }
     
     }

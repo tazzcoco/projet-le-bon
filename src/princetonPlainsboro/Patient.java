@@ -1,5 +1,7 @@
 package princetonPlainsboro;
 
+import java.util.Calendar;
+
 class Patient {
 
     private String nom;
@@ -7,11 +9,10 @@ class Patient {
     private int numSecu;
     private String adresse;
     private Date dateNaissance;
-    
 
     public Patient(String nom, String prenom) {
         this.nom = nom;
-        this.prenom = prenom;        
+        this.prenom = prenom;
     }
 
     public Patient(String nom, String prenom, Date dateNaissance, int numSecu, String adresse) {
@@ -54,8 +55,30 @@ class Patient {
     public Date getDateNaissance() {
         return dateNaissance;
     }
+    
+    public int calculAge(){
+        Calendar curr = Calendar.getInstance();
+        int yeardiff = curr.get(Calendar.YEAR) - dateNaissance.getAnnee();
+        if (dateNaissance.getMois() > curr.get(Calendar.MONTH)) {
+            yeardiff = yeardiff - 1;
+        } else {
+            if (dateNaissance.getMois() == curr.get(Calendar.MONTH)) {
+                if (dateNaissance.getJour() > curr.get(Calendar.DAY_OF_MONTH)) {
+                    yeardiff = yeardiff - 1;
+                }
+            } 
+        }
+        return yeardiff;
+    }
 
     public void afficherDP() {
-
+        System.out.println("Dossier Patient");
+        System.out.println("Nom : " + nom);
+        System.out.println("Prénom : " + prenom);
+        Calendar curr = Calendar.getInstance();
+        System.out.println("Date de Naissance :" + dateNaissance + "(" + this.calculAge() + " ans)");
+        System.out.println("Adresse : "+adresse);
+        System.out.println("N° sécurité sociale : " + numSecu);
+        System.out.println("Tableau des actes :");
     }
 }
