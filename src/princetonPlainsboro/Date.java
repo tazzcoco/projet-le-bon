@@ -1,20 +1,21 @@
 package princetonPlainsboro;
 
 class Date implements Comparable {
+    //attributs
     private int jour;
     private int mois;
     private int annee;
     private int heure;
     private int minute;
 
-    
+    //constructeur 1
     public Date(int jour, int mois, int annee) {
         this.jour = jour;
         this.mois = mois;
         this.annee = annee;
         }
     
-    
+    //constructeur 2
     public Date(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
         this.mois = mois;
