@@ -8,7 +8,7 @@ package princetonPlainsboroInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import princetonPlainsboro.*;
 
 public class ListePatientsAdministratif extends javax.swing.JFrame {
 
@@ -19,8 +19,11 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         jButton1.addActionListener(lpal);
         jButton2.addActionListener(lpal);
         jButton3.addActionListener(lpal);
+        //Patient p = new Patient("bernard","michel");
+        DossierMedical dm = new DossierMedical();
+        dm.ajouterPatient();
+        jList2.setModel(dm.getPatients());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
