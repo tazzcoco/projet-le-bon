@@ -6,12 +6,16 @@
 
 package princetonPlainsboroInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Thomas
  */
 public class NouvelleAdmission extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form NouvelleAdmission
      */
@@ -92,7 +96,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
         jComboBox2.setBackground(new java.awt.Color(153, 0, 153));
         jComboBox2.setForeground(new java.awt.Color(153, 153, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "médecin" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sans tri", "mï¿½decin" }));
 
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15" };
@@ -104,7 +108,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(153, 153, 255));
         jTextField1.setFont(new java.awt.Font("Hurry Up", 1, 36)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 0, 102));
-        jTextField1.setText("TM²");
+        jTextField1.setText("TMï¿½");
         jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
