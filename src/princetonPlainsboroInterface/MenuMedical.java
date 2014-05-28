@@ -1,4 +1,4 @@
-package princetonPlainsboroInterface;
+﻿package princetonPlainsboroInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,14 +46,10 @@ public class MenuMedical extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
-
-<<<<<<< HEAD
-=======
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(153, 153, 255));
         jButton1.setText("deconnexion");
 
->>>>>>> 2cc652bac022271cc2a38f35d0ba8ddd0f69c2c2
         jButton3.setBackground(new java.awt.Color(153, 0, 153));
         jButton3.setForeground(new java.awt.Color(153, 153, 255));
         jButton3.setText("Nouvelle admission");
@@ -94,13 +90,10 @@ public class MenuMedical extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-=======
->>>>>>> 2cc652bac022271cc2a38f35d0ba8ddd0f69c2c2
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
