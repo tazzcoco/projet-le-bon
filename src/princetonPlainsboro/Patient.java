@@ -75,7 +75,6 @@ class Patient {
         System.out.println("Dossier Patient");
         System.out.println("Nom : " + nom);
         System.out.println("Prénom : " + prenom);
-        Calendar curr = Calendar.getInstance();
         System.out.println("Date de Naissance :" + dateNaissance + "(" + this.calculAge() + " ans)");
         System.out.println("Adresse : "+adresse);
         System.out.println("N° sécurité sociale : " + numSecu);
