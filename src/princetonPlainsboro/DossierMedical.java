@@ -173,7 +173,7 @@ class DossierMedical {
         }
     }
 
-    public void afficherListeEntre(Date d1, Date d2) {
+    public void afficherFichesEntre(Date d1, Date d2) {
         //creation d'une liste de fiche de soins dont les dates sont comprises entre d1 et d2
         List<FicheDeSoins> lf = new ArrayList<FicheDeSoins>();
         System.out.println("Liste des fiches de soins entre le " + d1 + " et le " + d2 + " : \n");
