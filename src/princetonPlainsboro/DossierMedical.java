@@ -252,7 +252,7 @@ class DossierMedical {
         }
     }
 
-    public void retirerPatient() {
+    public void retirerPatient(Patient p) {
 
     }
 }
