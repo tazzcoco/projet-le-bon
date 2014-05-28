@@ -208,16 +208,15 @@ public class MenuMedical extends javax.swing.JFrame {
                 new PrincetonInterface().setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                new NouvelleAdmission().setVisible(true);
-                setVisible(false);
+                
             }else if (source == jButton4) {
                 
             }else if (source == jButton5) {
-                
+                new NouvelleAdmission().setVisible(true);
+                setVisible(false);
             }else if (source == jButton6) {
                 
             }
         }
     }
-
 }
