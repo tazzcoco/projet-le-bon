@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.Box;
 import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,22 +15,25 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class DossierMedical {
+
     //attributs
     private List<FicheDeSoins> fiches; //liste des fiches de soins 
     private DefaultListModel<Patient> patients; //liste des patients
     private List<Medecin> medecins; //liste des médecins
-    
-    public List<FicheDeSoins> getFiches(){
+
+    public List<FicheDeSoins> getFiches() {
         return fiches;
     }
-    public DefaultListModel<Patient> getPatients(){
+
+    public DefaultListModel<Patient> getPatients() {
         return patients;
     }
+
     //constructeur
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();
         patients = new DefaultListModel();
-// liste vide
+        medecins = new Vector<Medecin>();// listes vide
     }
 
     public void ajouterFiche(FicheDeSoins fiche) {
@@ -225,6 +229,7 @@ public class DossierMedical {
     }
 
     public void ajouterPatient() {
+
         //creation des JTextFields pour récupérer les renseignements du patient
         JTextField FieldPrenom = new JTextField(5);
         JTextField FieldNom = new JTextField(7);
@@ -233,26 +238,95 @@ public class DossierMedical {
         JTextField FieldBirth3 = new JTextField(4);
         JTextField FieldNumSecu = new JTextField(5);
         JTextField FieldAdresse = new JTextField(10);
-        //organisation de la fenêtre d'entrée utilisateur
+        
+        //création du JPanel et des JLabels
         JPanel myPanel = new JPanel();
-        myPanel.add(new JLabel("Nom :"));
-        myPanel.add(FieldNom);
-        myPanel.add(Box.createHorizontalStrut(15)); // a spacer        
-        myPanel.add(new JLabel("Prénom :"));
-        myPanel.add(FieldPrenom);
-        myPanel.add(Box.createVerticalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Date de Naissance :"));
-        myPanel.add(FieldBirth1);
-        myPanel.add(Box.createVerticalStrut(3)); // a spacer        
-        myPanel.add(FieldBirth2);
-        myPanel.add(Box.createVerticalStrut(3)); // a spacer        
-        myPanel.add(FieldBirth3);
-        myPanel.add(Box.createVerticalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Adresse :"));
-        myPanel.add(FieldAdresse);
-        myPanel.add(Box.createVerticalStrut(15)); // a spacer
-        myPanel.add(new JLabel("Numéro de sécurité sociale :"));
-        myPanel.add(FieldNumSecu);
+        JLabel LabelNom = new JLabel("Nom :");
+        JLabel LabelPrenom = new JLabel("Prénom :");
+        JLabel LabelBirth = new JLabel("Date de naissance :");
+        JLabel LabelAdresse = new JLabel("Adresse :");
+        JLabel LabelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
+        
+         //organisation de la fenêtre d'entrée utilisateur        
+         myPanel.add(new JLabel("Nom :"));
+         myPanel.add(FieldNom);
+         myPanel.add(Box.createHorizontalStrut(15)); // a spacer        
+         myPanel.add(new JLabel("Prénom :"));
+         myPanel.add(FieldPrenom);
+         myPanel.add(Box.createVerticalStrut(15)); // a spacer
+         myPanel.add(new JLabel("Date de Naissance :"));
+         myPanel.add(FieldBirth1);
+         myPanel.add(Box.createVerticalStrut(3)); // a spacer        
+         myPanel.add(FieldBirth2);
+         myPanel.add(Box.createVerticalStrut(3)); // a spacer        
+         myPanel.add(FieldBirth3);
+         myPanel.add(Box.createVerticalStrut(15)); // a spacer
+         myPanel.add(new JLabel("Adresse :"));
+         myPanel.add(FieldAdresse);
+         myPanel.add(Box.createVerticalStrut(15)); // a spacer
+         myPanel.add(new JLabel("Numéro de sécurité sociale :"));
+         myPanel.add(FieldNumSecu);
+          
+        
+        //essai avec GroupLayout (meilleur affichage, pas encore effectif)
+         /*
+        //création du GroupLayout
+        GroupLayout group = new GroupLayout(myPanel);
+        myPanel.setLayout(group);
+                 
+        //on règle les espaces entre composants en automatique
+        group.setAutoCreateGaps(true);
+        group.setAutoCreateContainerGaps(true);
+
+        //création de la partie horizontale
+        GroupLayout.SequentialGroup hGroup = group.createSequentialGroup();
+        //premier groupe (JLabels)
+        hGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelNom)
+                .addComponent(LabelPrenom)
+                .addComponent(LabelBirth)
+                .addComponent(LabelAdresse)
+                .addComponent(LabelNumSecu));
+        
+        //création du groupe de 3 JTextFields pour la date de naissance (jour,mois,année)
+        GroupLayout.SequentialGroup GroupBirth = group.createSequentialGroup()
+                .addComponent(FieldBirth1)
+                .addComponent(FieldBirth2)
+                .addComponent(FieldBirth3);
+
+        //deuxieme groupe (JTextFields)
+        hGroup.addGroup(group.createParallelGroup()
+                .addComponent(FieldNom)
+                .addComponent(FieldPrenom)
+                .addGroup(GroupBirth)
+                .addComponent(FieldAdresse)
+                .addComponent(FieldNumSecu));        
+
+        //création de la partie verticale         
+        GroupLayout.SequentialGroup vGroup = group.createSequentialGroup();
+                 
+        //création des 5 groupes verticaux         
+        vGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelNom)
+                .addComponent(FieldNom));
+        vGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelPrenom)
+                .addComponent(FieldPrenom));
+        vGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelBirth)
+                .addGroup(GroupBirth));
+        vGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelAdresse)
+                .addComponent(FieldAdresse));
+        vGroup.addGroup(group.createParallelGroup()
+                .addComponent(LabelNumSecu)
+                .addComponent(FieldNumSecu));
+        
+        //on set les groupes horizontaux et verticaux         
+        group.setHorizontalGroup(hGroup);
+        group.setVerticalGroup(vGroup);
+        */
+         
         //instanciation de la fenêtre d'entrée utilisateur
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);

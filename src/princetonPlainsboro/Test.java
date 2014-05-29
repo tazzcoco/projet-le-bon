@@ -42,7 +42,7 @@ class Test {
         System.out.println("Dossier trie selon les couts :");
         dm.afficherListeCoutCroissant();
 
-        //dm.ajouterPatient();
+        dm.ajouterPatient();
 
         dm.afficherListePatients();
         System.out.println("\n");

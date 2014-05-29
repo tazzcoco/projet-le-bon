@@ -20,9 +20,9 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         jButton2.addActionListener(lpal);
         jButton3.addActionListener(lpal);
         //Patient p = new Patient("bernard","michel");
-        DossierMedical dm = new DossierMedical();
-        dm.ajouterPatient();
-        jList2.setModel(dm.getPatients());
+        //DossierMedical dm = new DossierMedical();
+        //dm.ajouterPatient();
+        //jList2.setModel(dm.getPatients());
     }
     /**
      * This method is called from within the constructor to initialize the form.
