@@ -5,6 +5,7 @@
  */
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,7 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
 
     public DossierPatientAdministratif() {
         initComponents();
+        setLocationRelativeTo(getParent());
         dpal = new DossierPatientAdministratifListener();
         jButton1.addActionListener(dpal);
         jButton2.addActionListener(dpal);
@@ -205,18 +207,28 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new ListePatientsAdministratif().setVisible(true);
+                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa.setBounds(positionFenetre);
+                lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-
+                //imprimer le document -> se renseigner sur la classe PrinterJob
+                //pas de nouvelles fenêtres à instancier ici
             } else if (source == jButton4) {
-
+                //méthode retirerPatient(Patient p) de DossierMedical
+                //fenêtre de confirmation à ajouter "Patient retiré"
             } else if (source == jButton5) {
-                new ListePatientsAdministratif().setVisible(true);
+                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa.setBounds(positionFenetre);
+                lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton6) {
-                new ListeMédecinsAdministratif().setVisible(true);
+                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma.setBounds(positionFenetre);
+                lma.setVisible(true);
                 setVisible(false);
             }
         }

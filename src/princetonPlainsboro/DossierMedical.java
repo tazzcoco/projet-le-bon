@@ -17,11 +17,11 @@ import javax.swing.JTextField;
 public class DossierMedical {
 
     //attributs
-    private List<FicheDeSoins> fiches; //liste des fiches de soins 
+    private DefaultListModel<FicheDeSoins> fiches; //liste des fiches de soins 
     private DefaultListModel<Patient> patients; //liste des patients
-    private List<Medecin> medecins; //liste des médecins
+    private DefaultListModel<Medecin> medecins; //liste des médecins
 
-    public List<FicheDeSoins> getFiches() {
+    public DefaultListModel<FicheDeSoins> getFiches() {
         return fiches;
     }
 
@@ -31,13 +31,13 @@ public class DossierMedical {
 
     //constructeur
     public DossierMedical() {
-        fiches = new Vector<FicheDeSoins>();
+        fiches = new DefaultListModel();
         patients = new DefaultListModel();
-        medecins = new Vector<Medecin>();// listes vide
+        medecins = new DefaultListModel();
     }
 
     public void ajouterFiche(FicheDeSoins fiche) {
-        fiches.add(fiche);
+        fiches.addElement(fiche);
     }
 
     public void afficher() {
@@ -114,16 +114,21 @@ public class DossierMedical {
     }
 
     public void trierDates() {
-        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
-
+        List<FicheDeSoins> copieFiches = new ArrayList<FicheDeSoins>();
+        
+        //on remplit copieFiches avec les éléments de la DefaultListModel fiches
+        for(int i = 0;i<fiches.size();i++){
+            copieFiches.add(fiches.get(i));
+        }
+        System.out.println("Listes des fiches rangées par date croissante :");
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins de date minimale :
             int imin = 0;
             FicheDeSoins f1 = copieFiches.get(imin);
-            for (int i = 1; i < copieFiches.size(); i++) {
-                FicheDeSoins f2 = copieFiches.get(i);
+            for (int j = 1; j < copieFiches.size(); j++) {
+                FicheDeSoins f2 = copieFiches.get(j);
                 if (f2.getDate().compareTo(f1.getDate()) < 0) {
-                    imin = i;
+                    imin = j;
                     f1 = f2;
                 }
             }
@@ -137,9 +142,14 @@ public class DossierMedical {
 
     // tri generique :
     public void trier(ComparaisonFiches c) {
-        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
         DecimalFormat dec = new DecimalFormat("0.00");
-
+        List<FicheDeSoins> copieFiches = new ArrayList<FicheDeSoins>();
+        
+        //on remplit copieFiches avec les éléments de la DefaultListModel fiches
+        for(int i = 0;i<fiches.size();i++){
+            copieFiches.add(fiches.get(i));
+        }
+        
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins minimale :
             int imin = 0;
@@ -153,8 +163,6 @@ public class DossierMedical {
             }
             // on affiche la fiche de soins trouvee :
             f1.afficher();
-            System.out.println("Cout total des soins : " + dec.format(f1.coutTotal()));
-            System.out.println("------------------------");
             //on la supprime de la liste :
             copieFiches.remove(imin);
         }
@@ -230,7 +238,7 @@ public class DossierMedical {
 
     public void ajouterPatient() {
 
-        //creation des JTextFields pour récupérer les renseignements du patient
+        //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
         JTextField FieldPrenom = new JTextField(5);
         JTextField FieldNom = new JTextField(7);
         JTextField FieldBirth1 = new JTextField(2);
@@ -238,15 +246,8 @@ public class DossierMedical {
         JTextField FieldBirth3 = new JTextField(4);
         JTextField FieldNumSecu = new JTextField(5);
         JTextField FieldAdresse = new JTextField(10);
-        
-        //création du JPanel et des JLabels
         JPanel myPanel = new JPanel();
-        JLabel LabelNom = new JLabel("Nom :");
-        JLabel LabelPrenom = new JLabel("Prénom :");
-        JLabel LabelBirth = new JLabel("Date de naissance :");
-        JLabel LabelAdresse = new JLabel("Adresse :");
-        JLabel LabelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
-        
+                
          //organisation de la fenêtre d'entrée utilisateur        
          myPanel.add(new JLabel("Nom :"));
          myPanel.add(FieldNom);
@@ -270,6 +271,15 @@ public class DossierMedical {
         
         //essai avec GroupLayout (meilleur affichage, pas encore effectif)
          /*
+         
+        //création du JPanel et des JLabels
+        JPanel myPanel = new JPanel();
+        JLabel LabelNom = new JLabel("Nom :");
+        JLabel LabelPrenom = new JLabel("Prénom :");
+        JLabel LabelBirth = new JLabel("Date de naissance :");
+        JLabel LabelAdresse = new JLabel("Adresse :");
+        JLabel LabelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
+         
         //création du GroupLayout
         GroupLayout group = new GroupLayout(myPanel);
         myPanel.setLayout(group);

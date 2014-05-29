@@ -40,6 +40,10 @@ public class FicheDeSoins {
         Acte acte = new Acte(code, coefficient);
         actes.add(acte);
     }
+    
+    public void supprimerActe(Acte acte){
+        actes.remove(acte); 
+    }
 
     //affichage d'une fiche de soins
     public void afficher() {
@@ -52,7 +56,7 @@ public class FicheDeSoins {
             Acte a = actes.get(i);
             System.out.println("    > " + a.toString());
         }
-        System.out.println("Cout total des soins : " + dec.format(coutTotal()));
+        System.out.println("\n> Cout total des soins : " + dec.format(coutTotal()));
         System.out.println("------------------------");
     }
 

@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
+
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -12,11 +15,20 @@ package princetonPlainsboroInterface;
  */
 public class FicheDeSoins extends javax.swing.JFrame {
 
+    private FicheDeSoinsListener fdsl;
+
     /**
      * Creates new form FicheDeSoins
      */
     public FicheDeSoins() {
         initComponents();
+        setLocationRelativeTo(getParent());
+        fdsl = new FicheDeSoinsListener();
+        jButton1.addActionListener(fdsl);
+        jButton2.addActionListener(fdsl);
+        jButton3.addActionListener(fdsl);
+        jButton4.addActionListener(fdsl);
+        jButton5.addActionListener(fdsl);
     }
 
     /**
@@ -203,4 +215,37 @@ public class FicheDeSoins extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+public class FicheDeSoinsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
+            if (source == jButton1) {
+                MenuMedical mm = new MenuMedical();
+                mm.setBounds(positionFenetre);
+                mm.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                NouvelleAdmission na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton3) {
+                FicheDeSoins fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton4) {
+                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm.setBounds(positionFenetre);
+                lmm.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton5) {
+                //méthode ajouterFiche(FicheDeSoins fds); de DossierMedical
+            }
+        }
+
+    }
 }

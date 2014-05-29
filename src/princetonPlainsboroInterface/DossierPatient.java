@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class DossierPatient extends javax.swing.JFrame {
+
     private final DossierPatientListener dpl;
-    
+
     public DossierPatient() {
         initComponents();
+        setLocationRelativeTo(getParent());
         dpl = new DossierPatientListener();
         jButton1.addActionListener(dpl);
         jButton2.addActionListener(dpl);
@@ -271,32 +272,50 @@ public class DossierPatient extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-    
     public class DossierPatientListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new NouvelleAdmission().setVisible(true);
+                NouvelleAdmission na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setVisible(true);
                 setVisible(false);
-            }else if (source == jButton2) {
-                new MenuMedical().setVisible(true);
+            } else if (source == jButton2) {
+                MenuMedical mm = new MenuMedical();
+                mm.setBounds(positionFenetre);
+                mm.setVisible(true);
                 setVisible(false);
-            }else if (source == jButton3) {
-                
-            }else if (source == jButton4) {
-                
-            }else if (source == jButton5) {
-                
-            }else if (source == jButton7) {
-                
-            }else if (source == jButton8) {
-                
-            }else if (source == jButton9) {
-                
-            }else if (source == jButton10) {
-                
+            } else if (source == jButton3) {
+                FicheDeSoins fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton4) {
+                //méthode ajouterPatient(); de DossierMecical
+                //fenêtre de confirmation à ajouter "Patient ajouté"
+            } else if (source == jButton5) {
+                //méthode retirerPatient(Patient p); de DossierMedical
+                //fenêtre de confirmation à ajoute "Patient retiré"
+            } else if (source == jButton7) {
+                //méthode retirerActe(Acte a); de FicheDeSoins
+                //fenêtre de confirmation à ajouter "Acte retiré"
+            } else if (source == jButton8) {
+                FicheDeSoins fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton9) {
+                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm.setBounds(positionFenetre);
+                lmm.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton10) {
+                //méthode ajouterActe(Acte a); ajouterActe(Code code, int coefficient); de FicheDeSoins 
+                //fenêtre de confirmation à ajouter "Acte ajouté"
             }
         }
     }

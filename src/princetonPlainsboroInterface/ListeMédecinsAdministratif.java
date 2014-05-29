@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,15 +16,16 @@ import java.awt.event.ActionListener;
 public class ListeMédecinsAdministratif extends javax.swing.JFrame {
 
     private ListeMédecinsAdministratifListener lma;
+
     public ListeMédecinsAdministratif() {
         initComponents();
+        setLocationRelativeTo(getParent());
         lma = new ListeMédecinsAdministratifListener();
         jButton1.addActionListener(lma);
         jButton2.addActionListener(lma);
         jButton3.addActionListener(lma);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -227,14 +228,22 @@ public class ListeMédecinsAdministratifListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new MenuAdministratif().setVisible(true);
+                MenuAdministratif ma = new MenuAdministratif();
+                ma.setBounds(positionFenetre);
+                ma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                new ListePatientsAdministratif().setVisible(true);
+                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa.setBounds(positionFenetre);
+                lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                new ListeMédecinsAdministratif().setVisible(true);
+                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma.setBounds(positionFenetre);
+                lma.setVisible(true);
                 setVisible(false);
             }
         }

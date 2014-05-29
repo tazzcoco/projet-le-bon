@@ -5,6 +5,7 @@
  */
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,7 @@ public class MenuAdministratif extends javax.swing.JFrame {
 
     public MenuAdministratif() {
         initComponents();
+        setLocationRelativeTo(getParent());
         mal = new MenuAdministratifListener();
         jButton1.addActionListener(mal);
         jButton2.addActionListener(mal);
@@ -181,14 +183,22 @@ public class MenuAdministratif extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new ListePatientsAdministratif().setVisible(true);
+                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa.setBounds(positionFenetre);
+                lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                new ListeMédecinsAdministratif().setVisible(true);
+                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma.setBounds(positionFenetre);
+                lma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                new PrincetonInterface().setVisible(true);
+                PrincetonInterface pi = new PrincetonInterface();
+                pi.setBounds(positionFenetre);
+                pi.setVisible(true);
                 setVisible(false);
             }
         }

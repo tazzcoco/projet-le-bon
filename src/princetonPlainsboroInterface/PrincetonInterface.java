@@ -6,16 +6,19 @@
 
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PrincetonInterface extends javax.swing.JFrame {
+
     /**
      * Creates new form PrincetonInterface
      */
     public PrincetonInterface() {
         initComponents();
+        setLocationRelativeTo(getParent());
     }
-
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -226,4 +229,31 @@ public class PrincetonInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+public class PrincetonInterfaceListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+            
+            if (source == jButton1) {
+                /*
+                 if(((jComboBox1.getSelectedItem().toString() == "Médecin") || 
+                 (jComboBox1.getSelectedItem().toString() == "Secrétaire médicale")) && 
+                 (le mdp rentré est dans la liste des mdp du service)){
+                 MenuMedical mm = new MenuMedical();
+                 mm.setBounds(positionFenetre);
+                 mm.setVisible(true);
+                 setVisible(false);
+                 } else if ((jComboBox1.getSelectedItem().toString() == "Secrétaire administrative") &&
+                 (le mdp rentré est dans la liste des mdp du service administratif)){
+                 MenuAdministratif ma = new MenuAdministratif();
+                 ma.setBounds(positionFenetre);
+                 ma.setVisible(true);
+                 setVisible(false);
+                 */
+            }
+        }
+        
+    }
 }

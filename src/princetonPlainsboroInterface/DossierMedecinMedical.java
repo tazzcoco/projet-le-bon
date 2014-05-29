@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,8 +16,10 @@ import java.awt.event.ActionListener;
 public class DossierMedecinMedical extends javax.swing.JFrame {
 
     private DossierMedecinMedicalListener dmml;
+
     public DossierMedecinMedical() {
         initComponents();
+        setLocationRelativeTo(getParent());
         dmml = new DossierMedecinMedicalListener();
         jButton1.addActionListener(dmml);
         jButton2.addActionListener(dmml);
@@ -190,17 +192,27 @@ public class DossierMedecinMedicalListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new MenuMedical().setVisible(true);
+                MenuMedical mm = new MenuMedical();
+                mm.setBounds(positionFenetre);
+                mm.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                new NouvelleAdmission().setVisible(true);
+                NouvelleAdmission na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setVisible(true);
                 setVisible(false);
-            }else if (source == jButton3) {
-                new FicheDeSoins().setVisible(true);
+            } else if (source == jButton3) {
+                FicheDeSoins fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
-                new ListeMedecinMedical().setVisible(true);
+                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm.setBounds(positionFenetre);
+                lmm.setVisible(true);
                 setVisible(false);
             }
         }

@@ -5,7 +5,7 @@ class Test {
     public static void main(String[] args) {
         LectureXML test = new LectureXML("dossiers.xml");
         DossierMedical dm = test.getDossier();
-        dm.afficher();
+        //dm.afficher();
 
         System.out.println("\n********\n");
 
@@ -20,7 +20,7 @@ class Test {
         System.out.println("\n********\n");
 
         Medecin m1 = new Medecin("Deblouze", "Agathe", "Cardiologue");
-        dm.afficherListePatients(m1);
+        //dm.afficherListePatients(m1);
 
         System.out.println("\n********\n");
 
@@ -32,18 +32,17 @@ class Test {
 
         System.out.println();
         System.out.println("Dossier trie selon les dates :");
-        dm.trierDates();
+        //dm.trierDates();
         System.out.println(" ");
-        dm.afficherFichesEntre(new Date(1, 10, 2005), new Date(15, 11, 2005));
+        //dm.afficherFichesEntre(new Date(1, 10, 2005), new Date(15, 11, 2005));
 
         System.out.println("\n********\n");
 
         System.out.println();
         System.out.println("Dossier trie selon les couts :");
-        dm.afficherListeCoutCroissant();
+        //dm.afficherListeCoutCroissant();
 
-        dm.ajouterPatient();
-
+        //dm.ajouterPatient();
         dm.afficherListePatients();
         System.out.println("\n");
         dm.afficherListeMedecins();
@@ -52,7 +51,13 @@ class Test {
         Patient p2 = new Patient("Toto", "TOTO", new Date(6, 6, 1991), 2, "blabla");
         Patient p3 = new Patient("Tata", "TATA", new Date(6, 2, 1991), 2, "blabla");
         p2.afficherDP();
+        System.out.println("\n");
+        System.out.println("\n");
+
+        dm.trierDates();
         
-        dm.getFiches().get(1).afficher();
+        System.out.println("\n");
+        
+        dm.afficherListeCoutCroissant();
     }
 }

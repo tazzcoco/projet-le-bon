@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import princetonPlainsboro.*;
@@ -13,8 +13,10 @@ import princetonPlainsboro.*;
 public class ListePatientsAdministratif extends javax.swing.JFrame {
 
     private ListePatientsAdministratifListener lpal;
+
     public ListePatientsAdministratif() {
         initComponents();
+        setLocationRelativeTo(getParent());
         lpal = new ListePatientsAdministratifListener();
         jButton1.addActionListener(lpal);
         jButton2.addActionListener(lpal);
@@ -24,6 +26,7 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         //dm.ajouterPatient();
         //jList2.setModel(dm.getPatients());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -226,17 +229,24 @@ public class ListePatientsAdministratifListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
             if (source == jButton1) {
-                new MenuAdministratif().setVisible(true);
+                MenuAdministratif ma = new MenuAdministratif();
+                ma.setBounds(positionFenetre);
+                ma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                new ListePatientsAdministratif().setVisible(true);
+                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa.setBounds(positionFenetre);
+                lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                new ListeMédecinsAdministratif().setVisible(true);
+                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma.setBounds(positionFenetre);
+                lma.setVisible(true);
                 setVisible(false);
             }
         }
     }
 }
-

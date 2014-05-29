@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package princetonPlainsboroInterface;
+
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -12,11 +15,19 @@ package princetonPlainsboroInterface;
  */
 public class ListeMedecinMedical extends javax.swing.JFrame {
 
+    private ListeMedecinMedicalListener lmml;
+
     /**
      * Creates new form ListeMedecinMedical
      */
     public ListeMedecinMedical() {
         initComponents();
+        setLocationRelativeTo(getParent());
+        lmml = new ListeMedecinMedicalListener();
+        jButton1.addActionListener(lmml);
+        jButton2.addActionListener(lmml);
+        jButton3.addActionListener(lmml);
+        jButton4.addActionListener(lmml);
     }
 
     /**
@@ -227,4 +238,35 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+public class ListeMedecinMedicalListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
+
+            if (source == jButton1) {
+                MenuMedical mm = new MenuMedical();
+                mm.setBounds(positionFenetre);
+                mm.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                NouvelleAdmission na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton3) {
+                FicheDeSoins fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton4) {
+                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm.setBounds(positionFenetre);
+                lmm.setVisible(true);
+                setVisible(false);
+            }
+        }
+
+    }
 }
