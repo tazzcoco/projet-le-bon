@@ -46,18 +46,20 @@ public class FicheDeSoins {
     }
 
     //affichage d'une fiche de soins
-    public void afficher() {
+    public String afficher() {
         DecimalFormat dec = new DecimalFormat("0.00");
-        System.out.println("Fiche de soins du " + date.toString());
-        System.out.println("- medecin : " + medecin.toString());
-        System.out.println("- patient : " + patient.toString());
-        System.out.println("- actes medicaux :");
+        String s = new String();
+        s += "\nFiche de soins du " + date.toString();
+        s += "\n- medecin : " + medecin.toString();
+        s += "\n- patient : " + patient.toString();
+        s += "\n- actes medicaux :";
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);
-            System.out.println("    > " + a.toString());
+            s += "    > " + a.toString();
         }
-        System.out.println("\n> Cout total des soins : " + dec.format(coutTotal()));
-        System.out.println("------------------------");
+        s += "\n> Cout total des soins : " + dec.format(coutTotal());
+        s += "\n------------------------";
+        return s;
     }
 
     //calcul de cout total d'une fiche

@@ -12,10 +12,18 @@ import javax.swing.JFrame;
  */
 public class MenuMedical extends JFrame {
 
+    private DossierMedical dm;
+    private NouvelleAdmission na;
+    private ListeMedecinMedical lmm;
+    private FicheDeSoins fds;
+    private PrincetonInterface pi;
+
     private MenuMedicalListener mml;
 
     public MenuMedical() {
         initComponents();
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         setLocationRelativeTo(getParent());
         mml = new MenuMedicalListener();
         jButton1.addActionListener(mml);
@@ -23,6 +31,14 @@ public class MenuMedical extends JFrame {
         jButton4.addActionListener(mml);
         jButton5.addActionListener(mml);
         jButton6.addActionListener(mml);
+    }
+
+    public DossierMedical getDM() {
+        return dm;
+    }
+
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
     }
 
     /**
@@ -210,30 +226,40 @@ public class MenuMedical extends JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                PrincetonInterface pi = new PrincetonInterface();
+                pi = new PrincetonInterface();
                 pi.setBounds(positionFenetre);
+                pi.setDM(dm);
                 pi.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
                 //méthode ajouterPatient(); de DossierMedical
+                dm.ajouterPatient();
                 //on ouvre la fenêtre de la liste de patients                
-                NouvelleAdmission na = new NouvelleAdmission();
+                na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
+                na.setDM(dm);
+                na.getjList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
-                FicheDeSoins fds = new FicheDeSoins();
+                fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
+                fds.setDM(dm);
+                fds.getJTextArea1().setText(dm.afficher());
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton5) {
-                NouvelleAdmission na = new NouvelleAdmission();
+                na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
+                na.setDM(dm);
+                na.getjList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton6) {
-                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm = new ListeMedecinMedical();
                 lmm.setBounds(positionFenetre);
+                lmm.setDM(dm);
+                lmm.getJList1().setModel(dm.getMedecins());
                 lmm.setVisible(true);
                 setVisible(false);
             }

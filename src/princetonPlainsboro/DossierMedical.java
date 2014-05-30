@@ -22,7 +22,8 @@ public class DossierMedical {
     private DefaultListModel<FicheDeSoins> fiches; //liste des fiches de soins 
     private DefaultListModel<Patient> patients; //liste des patients
     private DefaultListModel<Medecin> medecins; //liste des médecins
-
+    
+    //accesseurs des listes
     public DefaultListModel<FicheDeSoins> getFiches() {
         return fiches;
     }
@@ -54,15 +55,17 @@ public class DossierMedical {
         }
     }
 
-    public void afficher() {
-        System.out.println("Dossier medical informatisé :");
-        System.out.println("-----------------------------");
+    public String afficher() {
+        String s = new String();
+        s += "Dossier medical informatisé :";
+        s += "\n-----------------------------";
         for (int i = 0; i < fiches.size(); i++) {
             FicheDeSoins f = fiches.get(i);
-            f.afficher();
+            s += f.afficher();
             // pour separer les fiches de soins :
-            System.out.println("--------------------------------------");
+            s += "\n--------------------------------------";
         }
+        return s;
     }
 
     public double coutPatient(Patient p) {

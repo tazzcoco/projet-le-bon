@@ -27,6 +27,10 @@ public class PrincetonInterface extends javax.swing.JFrame {
     public DossierMedical getDM(){
         return dm;
     }
+    
+    public void setDM(DossierMedical dm){
+        this.dm = dm;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

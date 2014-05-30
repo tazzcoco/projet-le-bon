@@ -16,6 +16,12 @@ import java.awt.event.ActionListener;
  */
 public class DossierMedecinMedical extends javax.swing.JFrame {
 
+    private DossierMedical dm;
+    private NouvelleAdmission na;
+    private ListeMedecinMedical lmm;
+    private FicheDeSoins fds;
+    private MenuMedical mm;
+    
     private DossierMedecinMedicalListener dmml;
 
     public DossierMedecinMedical() {
@@ -26,6 +32,15 @@ public class DossierMedecinMedical extends javax.swing.JFrame {
         jButton2.addActionListener(dmml);
         jButton3.addActionListener(dmml);
         jButton4.addActionListener(dmml);
+        jTextArea1.setText("Renseignements des médecins ici");
+    }
+
+    public DossierMedical getDM() {
+        return dm;
+    }
+    
+    public void setDM(DossierMedical dm){
+        this.dm = dm;
     }
 
     /**
@@ -202,23 +217,27 @@ public class DossierMedecinMedicalListener implements ActionListener {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                MenuMedical mm = new MenuMedical();
-                mm.setBounds(positionFenetre);
+                mm = new MenuMedical();
+                mm.setBounds(positionFenetre);                
+                mm.setDM(dm);
                 mm.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                NouvelleAdmission na = new NouvelleAdmission();
+                na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
+                na.setDM(dm);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                FicheDeSoins fds = new FicheDeSoins();
+                fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
+                fds.setDM(dm);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
-                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm = new ListeMedecinMedical();
                 lmm.setBounds(positionFenetre);
+                lmm.setDM(dm);
                 lmm.setVisible(true);
                 setVisible(false);
             }
