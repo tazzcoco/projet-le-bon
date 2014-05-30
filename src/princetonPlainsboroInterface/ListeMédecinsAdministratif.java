@@ -51,7 +51,7 @@ public class ListeMédecinsAdministratif extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(153, 153, 255));
-        jButton1.setText("Retour");
+        jButton1.setText("Retour Menu");
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton2.setText("Liste des Patients");
