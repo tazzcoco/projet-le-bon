@@ -5,6 +5,7 @@
  */
 package princetonPlainsboroInterface;
 
+import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -321,12 +322,15 @@ public class DossierPatient extends javax.swing.JFrame {
             } else if (source == jButton4) {
                 //méthode ajouterPatient(); de DossierMecical
                 //fenêtre de confirmation à ajouter "Patient ajouté"
+                repaint();
             } else if (source == jButton5) {
                 //méthode retirerPatient(Patient p); de DossierMedical
                 //fenêtre de confirmation à ajoute "Patient retiré"
+                repaint();
             } else if (source == jButton7) {
                 //méthode retirerActe(Acte a); de FicheDeSoins
                 //fenêtre de confirmation à ajouter "Acte retiré"
+                repaint();
             } else if (source == jButton8) {
                 FicheDeSoins fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
@@ -340,6 +344,7 @@ public class DossierPatient extends javax.swing.JFrame {
             } else if (source == jButton10) {
                 //méthode ajouterActe(Acte a); ajouterActe(Code code, int coefficient); de FicheDeSoins 
                 //fenêtre de confirmation à ajouter "Acte ajouté"
+                repaint();
             }
         }
     }

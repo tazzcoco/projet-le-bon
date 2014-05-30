@@ -6,20 +6,27 @@
 
 package princetonPlainsboroInterface;
 
+import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PrincetonInterface extends javax.swing.JFrame {
-
+    
+    private DossierMedical dm;
     /**
      * Creates new form PrincetonInterface
      */
     public PrincetonInterface() {
-        initComponents();
+        initComponents();        
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         setLocationRelativeTo(getParent());
     }
     
+    public DossierMedical getDM(){
+        return dm;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

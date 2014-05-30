@@ -6,7 +6,7 @@ public class Patient {
     //attributs
     private String nom;
     private String prenom;
-    private int numSecu;
+    private long numSecu;
     private String adresse;
     private Date dateNaissance;
     
@@ -17,7 +17,7 @@ public class Patient {
     }
     
     //constructeur 2
-    public Patient(String nom, String prenom, Date dateNaissance, int numSecu, String adresse) {
+    public Patient(String nom, String prenom, Date dateNaissance, long numSecu, String adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.numSecu = numSecu;
@@ -51,7 +51,7 @@ public class Patient {
         return adresse;
     }
 
-    public int getNumSecu() {
+    public long getNumSecu() {
         return numSecu;
     }
 

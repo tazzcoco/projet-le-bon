@@ -5,6 +5,7 @@
  */
 package princetonPlainsboroInterface;
 
+import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -224,6 +225,7 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
             } else if (source == jButton4) {
                 //méthode retirerPatient(Patient p) de DossierMedical
                 //fenêtre de confirmation à ajouter "Patient retiré"
+                repaint();
             } else if (source == jButton5) {
                 ListePatientsAdministratif lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);

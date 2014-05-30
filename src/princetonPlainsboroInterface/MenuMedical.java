@@ -1,5 +1,6 @@
 package princetonPlainsboroInterface;
 
+import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ import javax.swing.JFrame;
  *
  * @author Thomas
  */
-public class MenuMedical extends javax.swing.JFrame {
+public class MenuMedical extends JFrame {
 
     private MenuMedicalListener mml;
 

@@ -5,6 +5,7 @@
  */
 package princetonPlainsboroInterface;
 
+import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -248,6 +249,7 @@ public class FicheDeSoinsListener implements ActionListener {
                 setVisible(false);
             } else if (source == jButton5) {
                 //méthode ajouterFiche(FicheDeSoins fds); de DossierMedical
+                repaint();
             }
         }
 

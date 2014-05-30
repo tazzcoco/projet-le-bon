@@ -3,7 +3,7 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import princetonPlainsboro.*;
 import javax.swing.JButton;
 
 /**
@@ -11,7 +11,7 @@ import javax.swing.JButton;
  * @author Thomas
  */
 public class NouvelleAdmission extends javax.swing.JFrame {
-
+    private PrincetonInterface pi;
     private final NouvelleAdmissionListener nal;
 
     public NouvelleAdmission() {
@@ -23,6 +23,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jButton3.addActionListener(nal);
         jButton4.addActionListener(nal);
         jButton5.addActionListener(nal);
+        pi = new PrincetonInterface();
+        jList3.setModel(pi.getDM().getPatients());
     }
 
     /**
@@ -268,11 +270,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 setVisible(false);
             } else if (source == jButton2) {
                 //méthode ajouterPatient(); de DossierMedical
-                //on ouvre la fenêtre de la liste de patients                
-                NouvelleAdmission na = new NouvelleAdmission();
-                na.setBounds(positionFenetre);
-                na.setVisible(true);
-                setVisible(false);
+                pi.getDM().ajouterPatient();
+                repaint();
             } else if (source == jButton3) {
                 NouvelleAdmission na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);

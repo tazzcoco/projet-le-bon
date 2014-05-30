@@ -59,5 +59,6 @@ class Test {
         System.out.println("\n");
         
         dm.afficherListeCoutCroissant();
+        dm.ajouterPatient();
     }
 }

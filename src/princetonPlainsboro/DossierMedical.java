@@ -1,5 +1,7 @@
 package princetonPlainsboro;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,6 +31,10 @@ public class DossierMedical {
         return patients;
     }
 
+    public DefaultListModel<Medecin> getMedecins() {
+        return medecins;
+    }
+
     //constructeur
     public DossierMedical() {
         fiches = new DefaultListModel();
@@ -38,10 +44,18 @@ public class DossierMedical {
 
     public void ajouterFiche(FicheDeSoins fiche) {
         fiches.addElement(fiche);
+        for (int i = 0; i < fiches.size(); i++) {
+            if (!medecins.contains(fiche.getMedecin())) {
+                medecins.addElement(fiche.getMedecin());
+            }
+            if (!patients.contains(fiche.getPatient())) {
+                patients.addElement(fiche.getPatient());
+            }
+        }
     }
 
     public void afficher() {
-        System.out.println("Dossier medical informatise :");
+        System.out.println("Dossier medical informatisé :");
         System.out.println("-----------------------------");
         for (int i = 0; i < fiches.size(); i++) {
             FicheDeSoins f = fiches.get(i);
@@ -115,9 +129,9 @@ public class DossierMedical {
 
     public void trierDates() {
         List<FicheDeSoins> copieFiches = new ArrayList<FicheDeSoins>();
-        
+
         //on remplit copieFiches avec les éléments de la DefaultListModel fiches
-        for(int i = 0;i<fiches.size();i++){
+        for (int i = 0; i < fiches.size(); i++) {
             copieFiches.add(fiches.get(i));
         }
         System.out.println("Listes des fiches rangées par date croissante :");
@@ -142,14 +156,13 @@ public class DossierMedical {
 
     // tri generique :
     public void trier(ComparaisonFiches c) {
-        DecimalFormat dec = new DecimalFormat("0.00");
         List<FicheDeSoins> copieFiches = new ArrayList<FicheDeSoins>();
-        
+
         //on remplit copieFiches avec les éléments de la DefaultListModel fiches
-        for(int i = 0;i<fiches.size();i++){
+        for (int i = 0; i < fiches.size(); i++) {
             copieFiches.add(fiches.get(i));
         }
-        
+
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins minimale :
             int imin = 0;
@@ -170,7 +183,7 @@ public class DossierMedical {
 
     public void afficherListePatients() {
         //on créé une liste de patient
-        ArrayList<Patient> lp = new ArrayList<Patient>();
+        ArrayList<Patient> lp = new ArrayList<>();
         System.out.println("\nListe des patients :");
         //on la remplit et on affiche chaque patient sous la forme : NOM Prenom
         for (int i = 0; i < fiches.size(); i++) {
@@ -237,111 +250,48 @@ public class DossierMedical {
     }
 
     public void ajouterPatient() {
-
         //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
-        JTextField FieldPrenom = new JTextField(5);
-        JTextField FieldNom = new JTextField(7);
-        JTextField FieldBirth1 = new JTextField(2);
-        JTextField FieldBirth2 = new JTextField(2);
-        JTextField FieldBirth3 = new JTextField(4);
-        JTextField FieldNumSecu = new JTextField(5);
-        JTextField FieldAdresse = new JTextField(10);
+        JTextField fieldPrenom = new JTextField(5);
+        JTextField fieldNom = new JTextField(7);
+        JTextField fieldBirth1 = new JTextField(3);
+        JTextField fieldBirth2 = new JTextField(3);
+        JTextField fieldBirth3 = new JTextField(7);
+        JTextField fieldNumSecu = new JTextField(5);
+        JTextField fieldAdresse = new JTextField(10);
+        //création des JLabels
+        JLabel labelNom = new JLabel("Nom :");
+        JLabel labelPrenom = new JLabel("Prénom :");
+        JLabel labelBirth = new JLabel("Date de naissance :");
+        JLabel labelAdresse = new JLabel("Adresse :");
+        JLabel labelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
+        //création du JPanel
         JPanel myPanel = new JPanel();
-                
-         //organisation de la fenêtre d'entrée utilisateur        
-         myPanel.add(new JLabel("Nom :"));
-         myPanel.add(FieldNom);
-         myPanel.add(Box.createHorizontalStrut(15)); // a spacer        
-         myPanel.add(new JLabel("Prénom :"));
-         myPanel.add(FieldPrenom);
-         myPanel.add(Box.createVerticalStrut(15)); // a spacer
-         myPanel.add(new JLabel("Date de Naissance :"));
-         myPanel.add(FieldBirth1);
-         myPanel.add(Box.createVerticalStrut(3)); // a spacer        
-         myPanel.add(FieldBirth2);
-         myPanel.add(Box.createVerticalStrut(3)); // a spacer        
-         myPanel.add(FieldBirth3);
-         myPanel.add(Box.createVerticalStrut(15)); // a spacer
-         myPanel.add(new JLabel("Adresse :"));
-         myPanel.add(FieldAdresse);
-         myPanel.add(Box.createVerticalStrut(15)); // a spacer
-         myPanel.add(new JLabel("Numéro de sécurité sociale :"));
-         myPanel.add(FieldNumSecu);
-          
-        
-        //essai avec GroupLayout (meilleur affichage, pas encore effectif)
-         /*
-         
-        //création du JPanel et des JLabels
-        JPanel myPanel = new JPanel();
-        JLabel LabelNom = new JLabel("Nom :");
-        JLabel LabelPrenom = new JLabel("Prénom :");
-        JLabel LabelBirth = new JLabel("Date de naissance :");
-        JLabel LabelAdresse = new JLabel("Adresse :");
-        JLabel LabelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
-         
-        //création du GroupLayout
-        GroupLayout group = new GroupLayout(myPanel);
-        myPanel.setLayout(group);
-                 
-        //on règle les espaces entre composants en automatique
-        group.setAutoCreateGaps(true);
-        group.setAutoCreateContainerGaps(true);
 
-        //création de la partie horizontale
-        GroupLayout.SequentialGroup hGroup = group.createSequentialGroup();
-        //premier groupe (JLabels)
-        hGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelNom)
-                .addComponent(LabelPrenom)
-                .addComponent(LabelBirth)
-                .addComponent(LabelAdresse)
-                .addComponent(LabelNumSecu));
-        
-        //création du groupe de 3 JTextFields pour la date de naissance (jour,mois,année)
-        GroupLayout.SequentialGroup GroupBirth = group.createSequentialGroup()
-                .addComponent(FieldBirth1)
-                .addComponent(FieldBirth2)
-                .addComponent(FieldBirth3);
+        //création d'un panel pour les 3 JTextField de la date de naissance
+        JPanel panelBirth = new JPanel();
+        panelBirth.setLayout(new FlowLayout());
+        panelBirth.add(fieldBirth1);
+        panelBirth.add(fieldBirth2);
+        panelBirth.add(fieldBirth3);
 
-        //deuxieme groupe (JTextFields)
-        hGroup.addGroup(group.createParallelGroup()
-                .addComponent(FieldNom)
-                .addComponent(FieldPrenom)
-                .addGroup(GroupBirth)
-                .addComponent(FieldAdresse)
-                .addComponent(FieldNumSecu));        
+        //organisation de la fenêtre d'entrée utilisateur
+        myPanel.setLayout(new GridLayout(5, 2));
+        myPanel.add(labelNom);
+        myPanel.add(fieldNom);
+        myPanel.add(labelPrenom);
+        myPanel.add(fieldPrenom);
+        myPanel.add(labelBirth);
+        myPanel.add(panelBirth);
+        myPanel.add(labelAdresse);
+        myPanel.add(fieldAdresse);
+        myPanel.add(labelNumSecu);
+        myPanel.add(fieldNumSecu);
 
-        //création de la partie verticale         
-        GroupLayout.SequentialGroup vGroup = group.createSequentialGroup();
-                 
-        //création des 5 groupes verticaux         
-        vGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelNom)
-                .addComponent(FieldNom));
-        vGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelPrenom)
-                .addComponent(FieldPrenom));
-        vGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelBirth)
-                .addGroup(GroupBirth));
-        vGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelAdresse)
-                .addComponent(FieldAdresse));
-        vGroup.addGroup(group.createParallelGroup()
-                .addComponent(LabelNumSecu)
-                .addComponent(FieldNumSecu));
-        
-        //on set les groupes horizontaux et verticaux         
-        group.setHorizontalGroup(hGroup);
-        group.setVerticalGroup(vGroup);
-        */
-         
         //instanciation de la fenêtre d'entrée utilisateur
         int result = JOptionPane.showConfirmDialog(null, myPanel,
                 "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            Patient p = new Patient(FieldNom.getText(), FieldPrenom.getText(), new Date(Integer.parseInt(FieldBirth1.getText()), Integer.parseInt(FieldBirth2.getText()), Integer.parseInt(FieldBirth3.getText())), Integer.parseInt(FieldNumSecu.getText()), FieldAdresse.getText());
+            Patient p = new Patient(fieldNom.getText(), fieldPrenom.getText(), new Date(Integer.parseInt(fieldBirth1.getText()), Integer.parseInt(fieldBirth2.getText()), Integer.parseInt(fieldBirth3.getText())), Long.parseLong(fieldNumSecu.getText()), fieldAdresse.getText());
             patients.addElement(p);
             System.out.println("Patient ajouté !");
         }//end if
