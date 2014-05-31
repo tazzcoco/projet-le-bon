@@ -336,8 +336,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             for (int i = minIndex; i <= maxIndex; i++) {
                 if (lsm.isSelectedIndex(i)) {
                     dp = new DossierPatient();
-                    dp.setDM(dm);
-                    dp.getJList3().setModel(dm.getPatients());
+                    //dp.setDM(dm);
+                    //dp.getJList3().setModel(dm.getPatients());
                     dp.setVisible(true);
                     setVisible(true);
                 }
