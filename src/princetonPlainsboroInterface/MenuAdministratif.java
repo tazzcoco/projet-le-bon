@@ -17,14 +17,25 @@ import java.awt.event.ActionListener;
 public class MenuAdministratif extends javax.swing.JFrame {
 
     private MenuAdministratifListener mal;
+    private DossierMedical dm;
 
     public MenuAdministratif() {
         initComponents();
         setLocationRelativeTo(getParent());
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         mal = new MenuAdministratifListener();
         jButton1.addActionListener(mal);
         jButton2.addActionListener(mal);
         jButton3.addActionListener(mal);
+    }
+    
+    public DossierMedical getDM() {
+        return dm;
+    }
+
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
     }
 
     /**
@@ -216,6 +227,8 @@ public class MenuAdministratif extends javax.swing.JFrame {
             if (source == jButton1) {
                 ListePatientsAdministratif lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
