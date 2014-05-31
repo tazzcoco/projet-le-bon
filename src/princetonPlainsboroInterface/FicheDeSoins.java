@@ -239,6 +239,8 @@ public class FicheDeSoins extends javax.swing.JFrame {
     public JTextArea getJTextArea1() {
         return jTextArea1;
     }
+    
+    
 
     public class FicheDeSoinsListener implements ActionListener {
 

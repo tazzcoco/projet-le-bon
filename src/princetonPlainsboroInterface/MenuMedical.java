@@ -18,7 +18,7 @@ public class MenuMedical extends JFrame {
     private FicheDeSoins fds;
     private PrincetonInterface pi;
 
-    private MenuMedicalListener mml;
+    private final MenuMedicalListener mml;
 
     public MenuMedical() {
         initComponents();

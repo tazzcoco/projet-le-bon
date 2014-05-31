@@ -33,7 +33,6 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jButton4.addActionListener(nal);
         jButton5.addActionListener(nal);
         listSelectionModel = jList3.getSelectionModel();
-
         listSelectionModel.addListSelectionListener(new ListListener());
     }
 
@@ -339,7 +338,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                     //dp.setDM(dm);
                     //dp.getJList3().setModel(dm.getPatients());
                     dp.setVisible(true);
-                    setVisible(true);
+                    setVisible(false);
                 }
             }
         }

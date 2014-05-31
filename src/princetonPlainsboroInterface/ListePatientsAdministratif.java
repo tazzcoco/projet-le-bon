@@ -28,7 +28,6 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         jButton2.addActionListener(lpal);
         jButton3.addActionListener(lpal);
         listSelectionModel = jList2.getSelectionModel();
-
         listSelectionModel.addListSelectionListener(new ListAdmListener());
     }
     
@@ -248,6 +247,10 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         return jList2;
     }
 
+    Object getJList2() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public class ListePatientsAdministratifListener implements ActionListener {
 
         @Override
@@ -286,9 +289,12 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
             int maxIndex = lsm.getMaxSelectionIndex();
             for (int i = minIndex; i <= maxIndex; i++) {
                 if (lsm.isSelectedIndex(i)) {
+                    System.out.println("test2");
                     dpa = new DossierPatientAdministratif();
+                    //dpa.setDM(dm);
+                    //dpa.getjList2().setModel(dm.getPatients());
                     dpa.setVisible(true);
-                    setVisible(true);
+                    setVisible(false);
                 }
             }
         }

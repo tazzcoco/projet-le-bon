@@ -333,6 +333,7 @@ public class DossierPatient extends javax.swing.JFrame {
                 setVisible(false);
             } else if (source == jButton4) {
                 //méthode ajouterPatient(); de DossierMecical
+                dm.ajouterPatient();
                 //fenêtre de confirmation à ajouter "Patient ajouté"
                 repaint();
             } else if (source == jButton5) {
