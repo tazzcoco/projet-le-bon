@@ -27,6 +27,8 @@ public class DossierMedecinMedical extends javax.swing.JFrame {
     public DossierMedecinMedical() {
         initComponents();
         setLocationRelativeTo(getParent());
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         dmml = new DossierMedecinMedicalListener();
         jButton1.addActionListener(dmml);
         jButton2.addActionListener(dmml);
@@ -226,6 +228,7 @@ public class DossierMedecinMedicalListener implements ActionListener {
                 na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
