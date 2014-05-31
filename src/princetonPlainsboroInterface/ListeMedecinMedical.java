@@ -28,11 +28,11 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
     private DossierMedecinMedical dmm;
     private final ListSelectionModel listSelectionModel;
     private final ListeMedecinMedicalListener lmml;
-    
-/**
- * Creates new form ListeMedecinMedical
- */
-public ListeMedecinMedical() {
+
+    /**
+     * Creates new form ListeMedecinMedical
+     */
+    public ListeMedecinMedical() {
         initComponents();
         setLocationRelativeTo(getParent());
         lmml = new ListeMedecinMedicalListener();
@@ -42,7 +42,7 @@ public ListeMedecinMedical() {
         jButton4.addActionListener(lmml);
         listSelectionModel = jList1.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListMedecinMedListener());
-}
+    }
 
     public DossierMedical getDM() {
         return dm;
@@ -225,32 +225,21 @@ public ListeMedecinMedical() {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListeMedecinMedical.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListeMedecinMedical.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListeMedecinMedical.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
-
-catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListeMedecinMedical.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListeMedecinMedical.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ListeMedecinMedical.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ListeMedecinMedical.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ListeMedecinMedical.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -280,48 +269,48 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
 
     public JList getJList1() {
         return jList1;
-    
 
-}
+    }
 
     public class ListeMedecinMedicalListener implements ActionListener {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        Rectangle positionFenetre = getBounds();
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Rectangle positionFenetre = getBounds();
 
-        if (source == jButton1) {
-            mm = new MenuMedical();
-            mm.setBounds(positionFenetre);
-            mm.setDM(dm);
-            mm.setVisible(true);
-            setVisible(false);
-        } else if (source == jButton2) {
-            na = new NouvelleAdmission();
-            na.setBounds(positionFenetre);
-            na.setDM(dm);
-            na.getJList3().setModel(dm.getPatients());
-            na.setVisible(true);
-            setVisible(false);
-        } else if (source == jButton3) {
-            fds = new FicheDeSoins();
-            fds.setBounds(positionFenetre);
-            fds.setDM(dm);
-            fds.getJTextArea1().setText(dm.afficher());
-            fds.setVisible(true);
-            setVisible(false);
-        } else if (source == jButton4) {
-            lmm = new ListeMedecinMedical();
-            lmm.setBounds(positionFenetre);
-            lmm.setDM(dm);
-            lmm.getJList1().setModel(dm.getMedecins());
-            lmm.setVisible(true);
-            setVisible(false);
+            if (source == jButton1) {
+                mm = new MenuMedical();
+                mm.setBounds(positionFenetre);
+                mm.setDM(dm);
+                mm.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton2) {
+                na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setDM(dm);
+                na.getJList3().setModel(dm.getPatients());
+                na.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton3) {
+                fds = new FicheDeSoins();
+                fds.setBounds(positionFenetre);
+                fds.setDM(dm);
+                fds.getJTextArea1().setText(dm.afficher());
+                fds.setVisible(true);
+                setVisible(false);
+            } else if (source == jButton4) {
+                lmm = new ListeMedecinMedical();
+                lmm.setBounds(positionFenetre);
+                lmm.setDM(dm);
+                lmm.getJList1().setModel(dm.getMedecins());
+                lmm.setVisible(true);
+                setVisible(false);
+            }
         }
+
     }
 
-}
     public class ListMedecinMedListener implements ListSelectionListener {
 
         Rectangle positionFenetre = getBounds();
@@ -335,6 +324,7 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
             for (int i = minIndex; i <= maxIndex; i++) {
                 if (lsm.isSelectedIndex(i)) {
                     dmm = new DossierMedecinMedical();
+                    dmm.getJTextArea1().setText(dm.getMedecins().get(i).afficherDM());
                     //dmm.setDM(dm);
                     //dmm.getJList3().setModel(dm.getPatients());
                     dmm.setVisible(true);

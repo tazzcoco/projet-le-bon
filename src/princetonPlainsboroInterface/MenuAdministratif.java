@@ -18,6 +18,7 @@ public class MenuAdministratif extends javax.swing.JFrame {
 
     private MenuAdministratifListener mal;
     private DossierMedical dm;
+    private ListePatientsAdministratif lpa;
 
     public MenuAdministratif() {
         initComponents();
@@ -29,7 +30,7 @@ public class MenuAdministratif extends javax.swing.JFrame {
         jButton2.addActionListener(mal);
         jButton3.addActionListener(mal);
     }
-    
+
     public DossierMedical getDM() {
         return dm;
     }
@@ -234,11 +235,14 @@ public class MenuAdministratif extends javax.swing.JFrame {
             } else if (source == jButton2) {
                 ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
                 lma.setBounds(positionFenetre);
+                lma.setDM(dm);
+                lma.getJList2().setModel(dm.getMedecins());
                 lma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
                 PrincetonInterface pi = new PrincetonInterface();
                 pi.setBounds(positionFenetre);
+                pi.setDM(dm);
                 pi.setVisible(true);
                 setVisible(false);
             }

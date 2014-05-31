@@ -5,10 +5,11 @@
  */
 package princetonPlainsboroInterface;
 
-import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextArea;
+import princetonPlainsboro.*;
 
 /**
  *
@@ -43,6 +44,10 @@ public class DossierMedecinMedical extends javax.swing.JFrame {
     
     public void setDM(DossierMedical dm){
         this.dm = dm;
+    }
+    
+    public JTextArea getJTextArea1(){
+        return jTextArea1;
     }
 
     /**

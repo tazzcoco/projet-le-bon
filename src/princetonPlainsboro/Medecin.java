@@ -57,4 +57,13 @@ public class Medecin {
             return false;
         }
     }
+    
+    public String afficherDM() {
+        String s = "Dossier Médecin";
+        s += "\n\nNom : " + nom;
+        s += "\nPrénom : " + prenom;
+        s += "\nSpécialité : " + specialite;
+        s += "\n\n\tContact :\nNuméro de téléphone : "+numTel;
+        return s;
+    }
 }

@@ -5,10 +5,11 @@
  */
 package princetonPlainsboroInterface;
 
-import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextArea;
+import princetonPlainsboro.*;
 
 public class DossierPatientAdministratif extends javax.swing.JFrame {
 
@@ -207,6 +208,11 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    
+    public JTextArea getJTextArea1(){
+        return jTextArea1;
+    }
+    
     public class DossierPatientAdministratifListener implements ActionListener {
 
         @Override

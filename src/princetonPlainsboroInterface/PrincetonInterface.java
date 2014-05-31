@@ -264,12 +264,14 @@ public class PrincetonInterfaceListener implements ActionListener {
                  (le mdp rentré est dans la liste des mdp du service)){
                  MenuMedical mm = new MenuMedical();
                  mm.setBounds(positionFenetre);
+                 mm.setDM(dm);
                  mm.setVisible(true);
                  setVisible(false);
                  } else if ((jComboBox1.getSelectedItem().toString() == "Secrétaire administrative") &&
                  (le mdp rentré est dans la liste des mdp du service administratif)){
                  MenuAdministratif ma = new MenuAdministratif();
                  ma.setBounds(positionFenetre);
+                 ma.setDM(dm);
                  ma.setVisible(true);
                  setVisible(false);
                  */

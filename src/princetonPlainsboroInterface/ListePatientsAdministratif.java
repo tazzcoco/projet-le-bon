@@ -18,6 +18,9 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
     private ListePatientsAdministratifListener lpal;
     private ListSelectionModel listSelectionModel;
     private DossierPatientAdministratif dpa;
+    private MenuAdministratif ma;
+    private ListePatientsAdministratif lpa;
+    private ListeMédecinsAdministratif lma;
     private DossierMedical dm;
 
     public ListePatientsAdministratif() {
@@ -259,18 +262,23 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                MenuAdministratif ma = new MenuAdministratif();
+                ma = new MenuAdministratif();
                 ma.setBounds(positionFenetre);
+                ma.setDM(dm);
                 ma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma = new ListeMédecinsAdministratif();
                 lma.setBounds(positionFenetre);
+                lma.setDM(dm);
+                lma.getJList2().setModel(dm.getMedecins());
                 lma.setVisible(true);
                 setVisible(false);
             }
@@ -291,6 +299,7 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
                 if (lsm.isSelectedIndex(i)) {
                     System.out.println("test2");
                     dpa = new DossierPatientAdministratif();
+                    dpa.getJTextArea1().setText(dm.getPatients().get(i).afficherDP());
                     //dpa.setDM(dm);
                     //dpa.getjList2().setModel(dm.getPatients());
                     dpa.setVisible(true);

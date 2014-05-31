@@ -76,12 +76,13 @@ public class Patient {
     }
     
     //méthode affichant le dossier patient, le tableau des actes concernant un patient est instancié dans l'interface DossierPatient
-    public void afficherDP() {
-        System.out.println("Dossier Patient");
-        System.out.println("Nom : " + nom);
-        System.out.println("Prénom : " + prenom);
-        System.out.println("Date de Naissance :" + dateNaissance + "(" + this.calculAge() + " ans)");
-        System.out.println("Adresse : "+adresse);
-        System.out.println("N° sécurité sociale : " + numSecu);
+    public String afficherDP() {
+        String s = "Dossier Patient";
+        s += "\n\nNom : " + nom;
+        s += "\nPrénom : " + prenom;
+        s += "\nDate de Naissance :" + dateNaissance + "(" + this.calculAge() + " ans)";
+        s += "\nAdresse : "+adresse;
+        s += "\nN° sécurité sociale : " + numSecu;
+        return s;
     }
 }

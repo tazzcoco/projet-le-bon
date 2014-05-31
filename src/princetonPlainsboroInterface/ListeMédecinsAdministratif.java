@@ -5,10 +5,14 @@
  */
 package princetonPlainsboroInterface;
 
-import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import princetonPlainsboro.*;
 
 /**
  *
@@ -16,15 +20,31 @@ import java.awt.event.ActionListener;
  */
 public class ListeMédecinsAdministratif extends javax.swing.JFrame {
 
-    private ListeMédecinsAdministratifListener lma;
+    private ListeMédecinsAdministratifListener lmal;
+    private ListeMédecinsAdministratif lma;
+    private ListePatientsAdministratif lpa;
+    private MenuAdministratif ma;
+    private DossierMédecinAdministratif dma;
+    private DossierMedical dm;
+    private final ListSelectionModel listSelectionModel;
 
     public ListeMédecinsAdministratif() {
         initComponents();
         setLocationRelativeTo(getParent());
-        lma = new ListeMédecinsAdministratifListener();
-        jButton1.addActionListener(lma);
-        jButton2.addActionListener(lma);
-        jButton3.addActionListener(lma);
+        lmal = new ListeMédecinsAdministratifListener();
+        jButton1.addActionListener(lmal);
+        jButton2.addActionListener(lmal);
+        jButton3.addActionListener(lmal);
+        listSelectionModel = jList2.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListMedecinAdminListener());
+    }
+
+    public DossierMedical getDM() {
+        return dm;
+    }
+
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
     }
 
     @SuppressWarnings("unchecked")
@@ -225,7 +245,12 @@ public class ListeMédecinsAdministratif extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
-public class ListeMédecinsAdministratifListener implements ActionListener {
+
+    public JList getJList2() {
+        return jList2;
+    }
+
+    public class ListeMédecinsAdministratifListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -233,20 +258,48 @@ public class ListeMédecinsAdministratifListener implements ActionListener {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                MenuAdministratif ma = new MenuAdministratif();
+                ma = new MenuAdministratif();
                 ma.setBounds(positionFenetre);
+                ma.setDM(dm);
                 ma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma = new ListeMédecinsAdministratif();
                 lma.setBounds(positionFenetre);
+                lma.setDM(dm);
+                lma.getJList2().setModel(dm.getMedecins());
                 lma.setVisible(true);
                 setVisible(false);
+            }
+        }
+    }
+
+    public class ListMedecinAdminListener implements ListSelectionListener {
+
+        Rectangle positionFenetre = getBounds();
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            System.out.println("test");
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            int minIndex = lsm.getMinSelectionIndex();
+            int maxIndex = lsm.getMaxSelectionIndex();
+            for (int i = minIndex; i <= maxIndex; i++) {
+                if (lsm.isSelectedIndex(i)) {
+                    dma = new DossierMédecinAdministratif();
+                    dma.getJTextArea1().setText(dm.getMedecins().get(i).afficherDM());
+                    //dmm.setDM(dm);
+                    //dmm.getJList3().setModel(dm.getPatients());
+                    dma.setVisible(true);
+                    setVisible(false);
+                }
             }
         }
     }
