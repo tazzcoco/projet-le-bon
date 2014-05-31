@@ -20,7 +20,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private FicheDeSoins fds;
     private MenuMedical mm;
     private DossierPatient dp;
-    private ListSelectionModel listSelectionModel;
+    private final ListSelectionModel listSelectionModel;
     private final NouvelleAdmissionListener nal;
 
     public NouvelleAdmission() {
@@ -277,7 +277,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     /**
      * @return the jList3
      */
-    public javax.swing.JList getjList3() {
+    public javax.swing.JList getJList3() {
         return jList3;
     }
 
@@ -302,7 +302,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
-                na.getjList3().setModel(dm.getPatients());
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
@@ -335,7 +335,9 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             int maxIndex = lsm.getMaxSelectionIndex();
             for (int i = minIndex; i <= maxIndex; i++) {
                 if (lsm.isSelectedIndex(i)) {
-                    dp= new DossierPatient();
+                    dp = new DossierPatient();
+                    dp.setDM(dm);
+                    dp.getJList3().setModel(dm.getPatients());
                     dp.setVisible(true);
                     setVisible(true);
                 }
