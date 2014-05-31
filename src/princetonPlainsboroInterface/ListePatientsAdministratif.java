@@ -8,11 +8,17 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import princetonPlainsboro.*;
 
 public class ListePatientsAdministratif extends javax.swing.JFrame {
 
     private ListePatientsAdministratifListener lpal;
+    private ListSelectionModel listSelectionModel;
+    private DossierPatientAdministratif dpa;
+    private DossierMedical dm;
 
     public ListePatientsAdministratif() {
         initComponents();
@@ -21,12 +27,19 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         jButton1.addActionListener(lpal);
         jButton2.addActionListener(lpal);
         jButton3.addActionListener(lpal);
-        //Patient p = new Patient("bernard","michel");
-        //DossierMedical dm = new DossierMedical();
-        //dm.ajouterPatient();
-        //jList2.setModel(dm.getPatients());
+        listSelectionModel = jList2.getSelectionModel();
+
+        listSelectionModel.addListSelectionListener(new ListAdmListener());
+    }
+    
+    public DossierMedical getDM() {
+        return dm;
     }
 
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,7 +243,12 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
-public class ListePatientsAdministratifListener implements ActionListener {
+
+    public javax.swing.JList getjList2() {
+        return jList2;
+    }
+
+    public class ListePatientsAdministratifListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -252,6 +270,26 @@ public class ListePatientsAdministratifListener implements ActionListener {
                 lma.setBounds(positionFenetre);
                 lma.setVisible(true);
                 setVisible(false);
+            }
+        }
+    }
+
+    public class ListAdmListener implements ListSelectionListener {
+
+        Rectangle positionFenetre = getBounds();
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            System.out.println("test");
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            int minIndex = lsm.getMinSelectionIndex();
+            int maxIndex = lsm.getMaxSelectionIndex();
+            for (int i = minIndex; i <= maxIndex; i++) {
+                if (lsm.isSelectedIndex(i)) {
+                    dpa = new DossierPatientAdministratif();
+                    dpa.setVisible(true);
+                    setVisible(true);
+                }
             }
         }
     }

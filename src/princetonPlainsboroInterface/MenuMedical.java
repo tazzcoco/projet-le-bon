@@ -238,7 +238,7 @@ public class MenuMedical extends JFrame {
                 na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
-                na.getjList3().setModel(dm.getPatients());
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
@@ -252,7 +252,7 @@ public class MenuMedical extends JFrame {
                 na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
-                na.getjList3().setModel(dm.getPatients());
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton6) {

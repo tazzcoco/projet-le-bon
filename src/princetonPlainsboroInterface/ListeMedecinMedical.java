@@ -277,7 +277,7 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
                 na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
-                na.getjList3().setModel(dm.getPatients());
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {

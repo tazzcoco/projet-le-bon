@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class DossierPatient extends javax.swing.JFrame {
 
     private final DossierPatientListener dpl;
+    private DossierMedical dm;
 
     public DossierPatient() {
         initComponents();
@@ -28,7 +29,14 @@ public class DossierPatient extends javax.swing.JFrame {
         jButton9.addActionListener(dpl);
         jButton10.addActionListener(dpl);
     }
+    
+    public DossierMedical getDM() {
+        return dm;
+    }
 
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -296,6 +304,10 @@ public class DossierPatient extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    Object getJList3() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public class DossierPatientListener implements ActionListener {
 
