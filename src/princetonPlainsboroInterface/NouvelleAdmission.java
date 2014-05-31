@@ -3,8 +3,10 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import princetonPlainsboro.*;
-import javax.swing.JButton;
 
 /**
  *
@@ -17,6 +19,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private ListeMedecinMedical lmm;
     private FicheDeSoins fds;
     private MenuMedical mm;
+    private DossierPatient dp;
+    private ListSelectionModel listSelectionModel;
     private final NouvelleAdmissionListener nal;
 
     public NouvelleAdmission() {
@@ -28,6 +32,9 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         jButton3.addActionListener(nal);
         jButton4.addActionListener(nal);
         jButton5.addActionListener(nal);
+        listSelectionModel = jList3.getSelectionModel();
+
+        listSelectionModel.addListSelectionListener(new ListListener());
     }
 
     public DossierMedical getDM() {
@@ -301,7 +308,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             } else if (source == jButton4) {
                 fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
-                fds.setDM(dm);                
+                fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
                 fds.setVisible(true);
                 setVisible(false);
@@ -312,6 +319,26 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 lmm.getJList1().setModel(dm.getMedecins());
                 lmm.setVisible(true);
                 setVisible(false);
+            }
+        }
+    }
+
+    public class ListListener implements ListSelectionListener {
+
+        Rectangle positionFenetre = getBounds();
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            System.out.println("test");
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            int minIndex = lsm.getMinSelectionIndex();
+            int maxIndex = lsm.getMaxSelectionIndex();
+            for (int i = minIndex; i <= maxIndex; i++) {
+                if (lsm.isSelectedIndex(i)) {
+                    dp= new DossierPatient();
+                    dp.setVisible(true);
+                    setVisible(true);
+                }
             }
         }
     }
