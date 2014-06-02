@@ -9,10 +9,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import princetonPlainsboro.*;
 
 /**
@@ -27,6 +29,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private FicheDeSoins fds;
     private MenuMedical mm;
     private DossierPatient dp;
+    private Acte acte;
     private final ListSelectionModel listSelectionModel;
     private final NouvelleAdmissionListener nal;
 
@@ -298,6 +301,22 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         return jList3;
     }
     
+    public void remplirTable() {
+        for (int i = 0; i < dp.getJTable2().getRowCount(); i++) {
+            String observations = "";
+            Date date = new Date(1, 1, 1);
+            //Acte acte = new Acte();
+            Medecin medecin = new Medecin("a", "b", "ORL");
+            //princetonPlainsboro.FicheDeSoins fds2 = new princetonPlainsboro.FicheDeSoins(dm.getPatients().firstElement(), medecin, date);
+            //((DefaultTableModel) dp.getJTable2().getModel()).addRow(new Object[]{date.afficherDate(), acte.getCodeLibelle(), observations,
+                //medecin.getNPMedecin(), acte.getCode(), fds2.coutTotal()});
+            dp.getJTable2().repaint();
+        }
+//jTable2.getSelectionModel().addListSelectionListener(new tableListSelectionListener());
+
+        //grapher2.getGP().setJTable(jTable2);
+    }
+
     public void ajouterPatient() {
         //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
         JTextField fieldPrenom = new JTextField(5);
@@ -345,7 +364,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             dm.ajouterPatient(p);
         }
     }
-    
+
     public class NouvelleAdmissionListener implements ActionListener {
 
         @Override
@@ -405,6 +424,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                     dp = new DossierPatient();
                     dp.getJTextArea2().setText(dm.getPatients().get(i).afficherDP());
                     dp.setDM(dm);
+                    remplirTable();
                     //dp.getJList3().setModel(dm.getPatients());
                     dp.setVisible(true);
                     setVisible(false);

@@ -28,9 +28,8 @@ public class DossierPatient extends javax.swing.JFrame {
     private MenuMedical mm;
     private princetonPlainsboroInterface.FicheDeSoins fds;
     private NouvelleAdmission na;
-    private Date date;
-    private Acte acte;
     
+
     private DossierMedical dm;
 
     public DossierPatient() {
@@ -46,11 +45,13 @@ public class DossierPatient extends javax.swing.JFrame {
         jButton8.addActionListener(dpl);
         jButton9.addActionListener(dpl);
         jButton10.addActionListener(dpl);
-        //jTable2.getSelectionModel().addListSelectionListener(new tableListSelectionListener());
 
-        //grapher2.getGP().setJTable(jTable2);
     }
+
     
+    public JTable getJTable2(){
+        return jTable2;
+    }
     public DossierMedical getDM() {
         return dm;
     }
@@ -58,19 +59,21 @@ public class DossierPatient extends javax.swing.JFrame {
     public void setDM(DossierMedical dm) {
         this.dm = dm;
     }
-    public void setJTable (JTable jTable2) {
+
+    public void setJTable(JTable jTable2) {
         this.jTable2 = jTable2;
     }
-    public void setValueAt(Object value, int row, int col) {
-        for (int i =0; i< jTable2.getRowCount();i++){
-        // jTable2.rowData[row][col] = value;
-        //fireTableCellUpdated(row, col);   
-        }
-    }
-    
-    public JTextArea getJTextArea2(){
+//    public void setValueAt(Object value, int row, int col) {
+//        for (int i =0; i< jTable2.getRowCount();i++){
+//        // jTable2.rowData[row][col] = value;
+//        //fireTableCellUpdated(row, col);   
+//        }
+//    }
+
+    public JTextArea getJTextArea2() {
         return jTextArea2;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -339,7 +342,6 @@ public class DossierPatient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    
     public class DossierPatientListener implements ActionListener {
 
         @Override
@@ -399,14 +401,14 @@ public class DossierPatient extends javax.swing.JFrame {
     }
     /*public class tableListSelectionListener implements ListSelectionListener {
 
-        @Override
-        public void valueChanged(ListSelectionEvent lse) {
-            int[] rows = jTable2.getSelectedRows();
-            if (rows.length > 1) {
-                grapher2.getGP().getFunctionModel().setSelectionInterval(rows[0], rows[1]);
-            } else if (rows.length > 0) {
-                grapher2.getGP().getFunctionModel().setSelectionInterval(rows[0], rows[0]);
-            }
-        }
-    }*/
+     @Override
+     public void valueChanged(ListSelectionEvent lse) {
+     int[] rows = jTable2.getSelectedRows();
+     if (rows.length > 1) {
+     grapher2.getGP().getFunctionModel().setSelectionInterval(rows[0], rows[1]);
+     } else if (rows.length > 0) {
+     grapher2.getGP().getFunctionModel().setSelectionInterval(rows[0], rows[0]);
+     }
+     }
+     }*/
 }

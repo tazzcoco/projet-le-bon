@@ -29,11 +29,11 @@ public class MenuMedical extends JFrame {
 
     public MenuMedical() {
         initComponents();
-        //LectureXML test = new LectureXML("dossiers.xml");
-        //dm = test.getDossier();
-        dm = new DossierMedical();
-        Patient p = new Patient("Riviere","Tommy",new Date(23,9,1994),1234567891,"20 rue Barnave\n38000 Grenoble\nFrance");
-        dm.ajouterPatient(p);
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
+//        dm = new DossierMedical();
+//        Patient p = new Patient("Riviere","Tommy",new Date(23,9,1994),1234567891,"20 rue Barnave\n38000 Grenoble\nFrance");
+//        dm.ajouterPatient(p);
         setLocationRelativeTo(getParent());
         mml = new MenuMedicalListener();
         jButton1.addActionListener(mml);

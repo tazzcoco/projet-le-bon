@@ -10,6 +10,11 @@ public class Acte {
         this.code = code;
         this.coef = coef;
         }
+    public Acte(){
+        Code c1= Code.CS;
+        this.code=c1;
+        this.coef=1;
+    }
 
     @Override
     public String toString() {
@@ -19,7 +24,10 @@ public class Acte {
     public double cout() {
         return code.calculerCout(coef);
         }
-    public Code getCode (){
+    public String getCodeLibelle (){
+        return code.getLibelle();
+    }
+    public Code getCode(){
         return code;
     }
     

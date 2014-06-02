@@ -44,6 +44,9 @@ public class Medecin {
     public String getPrenom() {
         return prenom;
     }
+    public String getNPMedecin(){
+        return "Dr "+ nom + prenom;
+    }
 
     public String toString() {
         return "Dr " + prenom + " " + nom + ", " + specialite;
