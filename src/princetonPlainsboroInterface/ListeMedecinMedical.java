@@ -9,6 +9,8 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -27,6 +29,8 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
     private FicheDeSoins fds;
     private MenuMedical mm;
     private DossierMedecinMedical dmm;
+
+    private ComboBoxListener cbl;
     private final ListSelectionModel listSelectionModel;
     private final ListeMedecinMedicalListener lmml;
 
@@ -37,10 +41,12 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(getParent());
         lmml = new ListeMedecinMedicalListener();
+        cbl = new ComboBoxListener();
         jButton1.addActionListener(lmml);
         jButton2.addActionListener(lmml);
         jButton3.addActionListener(lmml);
         jButton4.addActionListener(lmml);
+        jComboBox1.addActionListener(cbl);
         listSelectionModel = jList1.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListMedecinMedListener());
     }
@@ -150,7 +156,7 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(0, 153, 51));
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radiologie", "Oncologie", "Hématologie", "Dermatologie", "Neurologie" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radiologie", "Oncologie", "Hématologie", "Dermatologie", "Neurologie", "Cardiologie", "ORL", "Anesthésiologie", "Gérontologie", "Gynécologie", "Pédiatrie", "Urologie" }));
 
         jList1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(jList1);
@@ -290,6 +296,8 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
@@ -334,5 +342,24 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
                 }
             }
         }
+    }
+
+    public class ComboBoxListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox) e.getSource();
+            DefaultListModel<Medecin> medecins = new DefaultListModel();
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if (cb.getSelectedItem().equals(dm.getFiches().get(i).getMedecin().getSpecialite())) {
+                    if (!medecins.contains(dm.getFiches().get(i).getMedecin())) {
+                        medecins.addElement(dm.getFiches().get(i).getMedecin());
+                    }
+                }
+            }
+            jList1.setModel(medecins);
+            jList1.repaint();
+        }
+
     }
 }

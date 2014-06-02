@@ -29,11 +29,11 @@ public class MenuMedical extends JFrame {
 
     public MenuMedical() {
         initComponents();
-        //LectureXML test = new LectureXML("dossiers.xml");
-        //dm = test.getDossier();
-        dm = new DossierMedical();
-        Patient p = new Patient("Riviere","Tommy",new Date(23,9,1994),1234567891,"20 rue Barnave\n38000 Grenoble\nFrance");
-        dm.ajouterPatient(p);
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
+        //dm = new DossierMedical();
+        //Patient p = new Patient("Riviere","Tommy",new Date(23,9,1994),1234567891,"20 rue Barnave\n38000 Grenoble\nFrance");
+        //dm.ajouterPatient(p);
         setLocationRelativeTo(getParent());
         mml = new MenuMedicalListener();
         jButton1.addActionListener(mml);
@@ -296,6 +296,8 @@ public class MenuMedical extends JFrame {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
@@ -312,6 +314,8 @@ public class MenuMedical extends JFrame {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton6) {

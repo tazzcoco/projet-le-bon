@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -358,6 +359,8 @@ public class DossierPatient extends javax.swing.JFrame {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
@@ -371,6 +374,8 @@ public class DossierPatient extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
+                fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton5) {

@@ -235,6 +235,8 @@ public class DossierMedecinMedicalListener implements ActionListener {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {

@@ -24,7 +24,8 @@ public class FicheDeSoins extends javax.swing.JFrame {
     private ListeMedecinMedical lmm;
     private FicheDeSoins fds;
     private MenuMedical mm;
-
+    
+    private ComboBoxListener cbl;
     private FicheDeSoinsListener fdsl;
 
     /**
@@ -34,11 +35,13 @@ public class FicheDeSoins extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(getParent());
         fdsl = new FicheDeSoinsListener();
+        cbl = new ComboBoxListener();
         jButton1.addActionListener(fdsl);
         jButton2.addActionListener(fdsl);
         jButton3.addActionListener(fdsl);
         jButton4.addActionListener(fdsl);
         jButton5.addActionListener(fdsl);
+        jComboBox1.addActionListener(cbl);
     }
 
     public DossierMedical getDM() {
@@ -244,12 +247,13 @@ public class FicheDeSoins extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
-    public JComboBox getJComboBox1(){
+    public JComboBox getJComboBox1() {
         return jComboBox1;
     }
+
     public JTextArea getJTextArea1() {
         return jTextArea1;
-    }   
+    }
 
     public class FicheDeSoinsListener implements ActionListener {
 
@@ -269,6 +273,8 @@ public class FicheDeSoins extends javax.swing.JFrame {
                 na.setBounds(positionFenetre);
                 na.setDM(dm);
                 na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
@@ -293,4 +299,22 @@ public class FicheDeSoins extends javax.swing.JFrame {
             }
         }
     }
+
+    public class ComboBoxListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s = "";
+            JComboBox cb = (JComboBox)e.getSource();
+            for(int i =0; i < dm.getFiches().size(); i++){
+                if (cb.getSelectedItem().equals(dm.getFiches().get(i).getPatient())){
+                    s += dm.getFiches().get(i).afficher();
+                }
+            }
+            jTextArea1.setText(s);
+            jTextArea1.repaint();
+        }
+    }
 }
+
+

@@ -31,7 +31,7 @@
     <medecin>
         <nom>Deblouze</nom>
         <prenom>Agathe</prenom>
-        <specialite>Cardiologue</specialite>
+        <specialite>Cardiologie</specialite>
     </medecin>
     <patient>
         <nom>Bole</nom>
@@ -52,7 +52,7 @@
     <medecin>
         <nom>Deblouze</nom>
         <prenom>Agathe</prenom>
-        <specialite>Cardiologue</specialite>
+        <specialite>Cardiologie</specialite>
     </medecin>
     <patient>
         <nom>Bole</nom>
@@ -69,7 +69,7 @@
     <medecin>
         <nom>Heget</nom>
         <prenom>Yves</prenom>
-        <specialite>Gynecologie</specialite>
+        <specialite>Gynécologie</specialite>
     </medecin>
     <patient>
         <nom>Bole</nom>
