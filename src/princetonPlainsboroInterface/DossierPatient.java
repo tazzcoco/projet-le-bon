@@ -187,15 +187,7 @@ public class DossierPatient extends javax.swing.JFrame {
             new String [] {
                 "Date", "Nom de l'acte", "Observations", "Médecin", "Code", "Coût total"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane5.setViewportView(jTable2);
 
         jButton10.setBackground(new java.awt.Color(0, 153, 51));
