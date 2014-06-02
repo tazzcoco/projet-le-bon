@@ -70,7 +70,7 @@ public class PrincetonInterface extends javax.swing.JFrame {
         jFormattedTextField1.setFont(new java.awt.Font("sansserif", 2, 12)); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Médecin", "Secrétaire médicale", "Secrétaire administrative" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Secteur médical", "Secteur administratif" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
