@@ -29,8 +29,7 @@ public class DossierPatient extends javax.swing.JFrame {
     private MenuMedical mm;
     private princetonPlainsboroInterface.FicheDeSoins fds;
     private NouvelleAdmission na;
-    private Date date;
-    private Acte acte;
+    private Patient currentPatient;
     
     private DossierMedical dm;
 
@@ -69,6 +68,9 @@ public class DossierPatient extends javax.swing.JFrame {
         }
     }
     
+    public void setCurrentPatient(Patient currentPatient){
+        this.currentPatient = currentPatient;
+    }
     public JTextArea getJTextArea2(){
         return jTextArea2;
     }
@@ -374,12 +376,22 @@ public class DossierPatient extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setCaretPosition(0);
                 DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
                 fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton5) {
                 //méthode retirerPatient(Patient p); de DossierMedical
+                dm.retirerPatient(currentPatient);
+                na = new NouvelleAdmission();
+                na.setBounds(positionFenetre);
+                na.setDM(dm);
+                na.getJList3().setModel(dm.getPatients());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getMedecins().toArray());
+                na.getJComboBox2().setModel(cbModel);
+                na.setVisible(true);
+                setVisible(false);
                 //fenêtre de confirmation à ajoute "Patient retiré"
                 repaint();
             } else if (source == jButton7) {
@@ -391,6 +403,9 @@ public class DossierPatient extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setCaretPosition(0);
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
+                fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton9) {

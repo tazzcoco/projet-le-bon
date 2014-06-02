@@ -306,6 +306,7 @@ public class DossierMedical {
     public void retirerPatient(Patient p) {
         patients.removeElement(p);
         p = null;
+        System.out.println("Patient retiré !");
     }
 
     public void ajouterMedecin() {
@@ -360,5 +361,6 @@ public class DossierMedical {
     public void retirerMedecin(Medecin m) {
         medecins.removeElement(m);
         m = null;
+        System.out.println("Médecin retiré !");
     }
 }

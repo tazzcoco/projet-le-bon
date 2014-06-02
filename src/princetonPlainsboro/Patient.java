@@ -80,7 +80,7 @@ public class Patient {
         String s = "Dossier Patient";
         s += "\n\nNom : " + nom;
         s += "\nPrénom : " + prenom;
-        s += "\nDate de Naissance :" + dateNaissance + "(" + this.calculAge() + " ans)";
+        s += "\nDate de Naissance :" + dateNaissance /*" (" + this.calculAge() + " ans)"*/;
         s += "\nAdresse : "+adresse;
         s += "\nN° sécurité sociale : " + numSecu;
         return s;

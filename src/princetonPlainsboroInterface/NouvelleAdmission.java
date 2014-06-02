@@ -29,7 +29,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private FicheDeSoins fds;
     private MenuMedical mm;
     private DossierPatient dp;
-    
+
+    private TextFieldListener tfl;
     private ComboBoxListener cbl;
     private final ListSelectionModel listSelectionModel;
     private final NouvelleAdmissionListener nal;
@@ -39,12 +40,14 @@ public class NouvelleAdmission extends javax.swing.JFrame {
         setLocationRelativeTo(getParent());
         nal = new NouvelleAdmissionListener();
         cbl = new ComboBoxListener();
+        tfl = new TextFieldListener();
         jButton1.addActionListener(nal);
         jButton2.addActionListener(nal);
         jButton3.addActionListener(nal);
         jButton4.addActionListener(nal);
         jButton5.addActionListener(nal);
         jComboBox2.addActionListener(cbl);
+        jTextField2.addActionListener(tfl);
         listSelectionModel = jList3.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListListener());
     }
@@ -305,18 +308,18 @@ public class NouvelleAdmission extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-    
-    public JComboBox getJComboBox2(){
+
+    public JComboBox getJComboBox2() {
         return jComboBox2;
     }
-    
+
     /**
      * @return the jList3
      */
     public javax.swing.JList getJList3() {
         return jList3;
     }
-    
+
     public void ajouterPatient() {
         //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
         JTextField fieldPrenom = new JTextField(5);
@@ -364,7 +367,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             dm.ajouterPatient(p);
         }
     }
-    
+
     public class NouvelleAdmissionListener implements ActionListener {
 
         @Override
@@ -396,6 +399,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setCaretPosition(0);
                 DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
                 fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
@@ -413,11 +417,8 @@ public class NouvelleAdmission extends javax.swing.JFrame {
 
     public class ListListener implements ListSelectionListener {
 
-        Rectangle positionFenetre = getBounds();
-
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            System.out.println("test");
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
             int minIndex = lsm.getMinSelectionIndex();
             int maxIndex = lsm.getMaxSelectionIndex();
@@ -425,6 +426,7 @@ public class NouvelleAdmission extends javax.swing.JFrame {
                 if (lsm.isSelectedIndex(i)) {
                     dp = new DossierPatient();
                     dp.getJTextArea2().setText(dm.getPatients().get(i).afficherDP());
+                    dp.setCurrentPatient(dm.getPatients().get(i));
                     dp.setDM(dm);
                     dp.setVisible(true);
                     setVisible(false);
@@ -432,16 +434,16 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public class ComboBoxListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JComboBox cb = (JComboBox)e.getSource();
+            JComboBox cb = (JComboBox) e.getSource();
             DefaultListModel<Patient> patients = new DefaultListModel();
-            for(int i = 0; i < dm.getFiches().size() ; i++){
-                if(cb.getSelectedItem().equals(dm.getFiches().get(i).getMedecin())){
-                    if(!patients.contains(dm.getFiches().get(i).getPatient())){
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if (cb.getSelectedItem().equals(dm.getFiches().get(i).getMedecin())) {
+                    if (!patients.contains(dm.getFiches().get(i).getPatient())) {
                         patients.addElement(dm.getFiches().get(i).getPatient());
                     }
                 }
@@ -449,6 +451,23 @@ public class NouvelleAdmission extends javax.swing.JFrame {
             jList3.setModel(patients);
             jList3.repaint();
         }
-        
+    }
+
+    public class TextFieldListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String search = jTextField2.getText();
+            DefaultListModel<Patient> patients = new DefaultListModel();
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if ((search.toUpperCase().equals(dm.getFiches().get(i).getPatient().getNom().toUpperCase())) || (search.toUpperCase().equals(dm.getFiches().get(i).getPatient().getPrenom().toUpperCase()))) {
+                    if (!patients.contains(dm.getFiches().get(i).getPatient())) {
+                        patients.addElement(dm.getFiches().get(i).getPatient());
+                    }
+                }
+            }
+            jList3.setModel(patients);
+            jList3.repaint();
+        }
     }
 }

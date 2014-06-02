@@ -8,6 +8,7 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,6 +18,8 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
 
     private ListePatientsAdministratifListener lpal;
     private ListSelectionModel listSelectionModel;
+    private TextFieldListener tfl;
+    
     private DossierPatientAdministratif dpa;
     private MenuAdministratif ma;
     private ListePatientsAdministratif lpa;
@@ -27,9 +30,11 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(getParent());
         lpal = new ListePatientsAdministratifListener();
+        tfl = new TextFieldListener();
         jButton1.addActionListener(lpal);
         jButton2.addActionListener(lpal);
         jButton3.addActionListener(lpal);
+        jTextField3.addActionListener(tfl);
         listSelectionModel = jList2.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListAdmListener());
     }
@@ -301,6 +306,24 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
                     setVisible(false);
                 }
             }
+        }
+    }
+    
+    public class TextFieldListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String search = jTextField3.getText();
+            DefaultListModel<Patient> patients = new DefaultListModel();
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if ((search.toUpperCase().equals(dm.getFiches().get(i).getPatient().getNom().toUpperCase())) || (search.toUpperCase().equals(dm.getFiches().get(i).getPatient().getPrenom().toUpperCase()))) {
+                    if (!patients.contains(dm.getFiches().get(i).getPatient())) {
+                        patients.addElement(dm.getFiches().get(i).getPatient());
+                    }
+                }
+            }
+            jList2.setModel(patients);
+            jList2.repaint();
         }
     }
 }

@@ -8,6 +8,7 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -26,15 +27,19 @@ public class ListeMédecinsAdministratif extends javax.swing.JFrame {
     private MenuAdministratif ma;
     private DossierMédecinAdministratif dma;
     private DossierMedical dm;
+    
+    private TextFieldListener tfl;
     private final ListSelectionModel listSelectionModel;
 
     public ListeMédecinsAdministratif() {
         initComponents();
         setLocationRelativeTo(getParent());
         lmal = new ListeMédecinsAdministratifListener();
+        tfl = new TextFieldListener();
         jButton1.addActionListener(lmal);
         jButton2.addActionListener(lmal);
         jButton3.addActionListener(lmal);
+        jTextField3.addActionListener(tfl);
         listSelectionModel = jList2.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListMedecinAdminListener());
     }
@@ -300,6 +305,24 @@ public class ListeMédecinsAdministratif extends javax.swing.JFrame {
                     setVisible(false);
                 }
             }
+        }
+    }
+    
+    public class TextFieldListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String search = jTextField3.getText();
+            DefaultListModel<Medecin> medecins = new DefaultListModel();
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if ((search.toUpperCase().equals(dm.getFiches().get(i).getMedecin().getNom().toUpperCase())) || (search.toUpperCase().equals(dm.getFiches().get(i).getMedecin().getPrenom().toUpperCase()))) {
+                    if (!medecins.contains(dm.getFiches().get(i).getMedecin())) {
+                        medecins.addElement(dm.getFiches().get(i).getMedecin());
+                    }
+                }
+            }
+            jList2.setModel(medecins);
+            jList2.repaint();
         }
     }
 }

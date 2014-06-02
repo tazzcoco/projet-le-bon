@@ -146,6 +146,8 @@ public class FicheDeSoins extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -282,6 +284,7 @@ public class FicheDeSoins extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setCaretPosition(0);
                 DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
                 fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);

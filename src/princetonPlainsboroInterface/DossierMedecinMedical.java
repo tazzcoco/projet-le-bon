@@ -242,7 +242,9 @@ public class DossierMedecinMedicalListener implements ActionListener {
             } else if (source == jButton3) {
                 fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
-                fds.setDM(dm);fds.getJTextArea1().setText(dm.afficher());
+                fds.setDM(dm);
+                fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setCaretPosition(0);
                 DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
                 fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);

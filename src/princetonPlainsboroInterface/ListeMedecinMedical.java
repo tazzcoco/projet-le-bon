@@ -31,6 +31,7 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
     private DossierMedecinMedical dmm;
 
     private ComboBoxListener cbl;
+    private TextFieldListener tfl;
     private final ListSelectionModel listSelectionModel;
     private final ListeMedecinMedicalListener lmml;
 
@@ -42,11 +43,13 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
         setLocationRelativeTo(getParent());
         lmml = new ListeMedecinMedicalListener();
         cbl = new ComboBoxListener();
+        tfl = new TextFieldListener();
         jButton1.addActionListener(lmml);
         jButton2.addActionListener(lmml);
         jButton3.addActionListener(lmml);
         jButton4.addActionListener(lmml);
         jComboBox1.addActionListener(cbl);
+        jTextField1.addActionListener(tfl);
         listSelectionModel = jList1.getSelectionModel();
         listSelectionModel.addListSelectionListener(new ListMedecinMedListener());
     }
@@ -304,7 +307,8 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
                 fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
-                fds.getJTextArea1().setText(dm.afficher());
+                fds.getJTextArea1().setText(dm.afficher());                
+                fds.getJTextArea1().setCaretPosition(0);
                 DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
                 fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
@@ -360,6 +364,23 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
             jList1.setModel(medecins);
             jList1.repaint();
         }
+    }
+    
+    public class TextFieldListener implements ActionListener {
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String search = jTextField1.getText();
+            DefaultListModel<Medecin> medecins = new DefaultListModel();
+            for (int i = 0; i < dm.getFiches().size(); i++) {
+                if ((search.toUpperCase().equals(dm.getFiches().get(i).getMedecin().getNom().toUpperCase())) || (search.toUpperCase().equals(dm.getFiches().get(i).getMedecin().getPrenom().toUpperCase()))) {
+                    if (!medecins.contains(dm.getFiches().get(i).getMedecin())) {
+                        medecins.addElement(dm.getFiches().get(i).getMedecin());
+                    }
+                }
+            }
+            jList1.setModel(medecins);
+            jList1.repaint();
+        }
     }
 }
