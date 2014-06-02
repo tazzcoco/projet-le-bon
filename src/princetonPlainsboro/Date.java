@@ -1,6 +1,7 @@
 package princetonPlainsboro;
 
 public class Date implements Comparable {
+
     //attributs
     private int jour;
     private int mois;
@@ -13,8 +14,8 @@ public class Date implements Comparable {
         this.jour = jour;
         this.mois = mois;
         this.annee = annee;
-        }
-    
+    }
+
     //constructeur 2
     public Date(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
@@ -23,31 +24,33 @@ public class Date implements Comparable {
         this.heure = heure;
         this.minute = minute;
     }
-       
+
     public String toString() {
         return getJour() + "/" + getMois() + "/" + getAnnee();
-        }
-    
+    }
+
     public boolean equals(Object o) {
         if (o instanceof Date) {
-            Date d = (Date)o;
+            Date d = (Date) o;
             return (getAnnee() == d.getAnnee()) && (getMois() == d.getMois()) && (getJour() == d.getJour());
-            }
-        else
+        } else {
             return false;
         }
-    
+    }
+
     // precondition : 'o' est une instance de 'Date' :
     public int compareTo(Object o) {
-        Date d = (Date)o;
-        if (getAnnee() != d.getAnnee())
+        Date d = (Date) o;
+        if (getAnnee() != d.getAnnee()) {
             return getAnnee() - d.getAnnee();
+        }
         // ici on a forcement annee == d.annee :
-        if (getMois() != d.getMois())
-            return getMois()  - d.getMois();
+        if (getMois() != d.getMois()) {
+            return getMois() - d.getMois();
+        }
         // ici on a forcement annee == d.annee et mois == d.mois :
         return getJour() - d.getJour();
-        }
+    }
 
     /**
      * @return the jour
@@ -83,5 +86,9 @@ public class Date implements Comparable {
     public int getMinute() {
         return minute;
     }
-    
+
+    public String afficherDate() {
+        String date= jour + "/" + mois + "/" + annee;
+        return date;
     }
+}

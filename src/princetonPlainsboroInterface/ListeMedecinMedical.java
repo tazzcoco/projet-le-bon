@@ -8,6 +8,7 @@ package princetonPlainsboroInterface;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -296,6 +297,8 @@ public class ListeMedecinMedical extends javax.swing.JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
+                fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
