@@ -9,6 +9,10 @@ import princetonPlainsboro.*;
 public class DossierMédecinAdministratif extends javax.swing.JFrame {
 
     private DossierMédecinAdministratifListener dmal;
+    private DossierMedical dm;
+    private MenuAdministratif ma;
+    private ListePatientsAdministratif lpa;
+    private ListeMédecinsAdministratif lma;
 
     public DossierMédecinAdministratif() {
         initComponents();
@@ -177,7 +181,10 @@ public class DossierMédecinAdministratif extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-
+    
+    public void setDM(DossierMedical dm){
+        this.dm = dm;
+    }
     /**
      * @return the jTextArea1
      */
@@ -193,18 +200,23 @@ public class DossierMédecinAdministratif extends javax.swing.JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                MenuAdministratif ma = new MenuAdministratif();
+                ma = new MenuAdministratif();
                 ma.setBounds(positionFenetre);
+                ma.setDM(dm);
                 ma.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton4) {
-                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma = new ListeMédecinsAdministratif();
                 lma.setBounds(positionFenetre);
+                lma.setDM(dm);
+                lma.getJList2().setModel(dm.getMedecins());
                 lma.setVisible(true);
                 setVisible(false);
             }
