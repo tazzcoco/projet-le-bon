@@ -14,6 +14,9 @@ import princetonPlainsboro.*;
 public class DossierPatientAdministratif extends javax.swing.JFrame {
 
     private final DossierPatientAdministratifListener dpal;
+    private ListePatientsAdministratif lpa;
+    private ListeMédecinsAdministratif lma;
+    private DossierMedical dm;
 
     public DossierPatientAdministratif() {
         initComponents();
@@ -208,11 +211,15 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-    
-    public JTextArea getJTextArea1(){
+
+    public void setDM(DossierMedical dm) {
+        this.dm = dm;
+    }
+
+    public JTextArea getJTextArea1() {
         return jTextArea1;
     }
-    
+
     public class DossierPatientAdministratifListener implements ActionListener {
 
         @Override
@@ -221,8 +228,10 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
@@ -233,13 +242,17 @@ public class DossierPatientAdministratif extends javax.swing.JFrame {
                 //fenêtre de confirmation à ajouter "Patient retiré"
                 repaint();
             } else if (source == jButton5) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
+                lpa.setDM(dm);
+                lpa.getjList2().setModel(dm.getPatients());
                 lpa.setVisible(true);
                 setVisible(false);
             } else if (source == jButton6) {
-                ListeMédecinsAdministratif lma = new ListeMédecinsAdministratif();
+                lma = new ListeMédecinsAdministratif();
                 lma.setBounds(positionFenetre);
+                lma.setDM(dm);
+                lma.getJList2().setModel(dm.getMedecins());
                 lma.setVisible(true);
                 setVisible(false);
             }

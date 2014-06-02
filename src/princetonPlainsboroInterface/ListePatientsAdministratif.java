@@ -250,10 +250,6 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
         return jList2;
     }
 
-    Object getJList2() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public class ListePatientsAdministratifListener implements ActionListener {
 
         @Override
@@ -300,8 +296,7 @@ public class ListePatientsAdministratif extends javax.swing.JFrame {
                     System.out.println("test2");
                     dpa = new DossierPatientAdministratif();
                     dpa.getJTextArea1().setText(dm.getPatients().get(i).afficherDP());
-                    //dpa.setDM(dm);
-                    //dpa.getjList2().setModel(dm.getPatients());
+                    dpa.setDM(dm);
                     dpa.setVisible(true);
                     setVisible(false);
                 }
