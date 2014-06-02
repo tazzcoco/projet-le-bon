@@ -253,52 +253,54 @@ public class DossierMedical {
         trier(new ComparaisonFichesCouts());
     }
 
-    public void ajouterPatient() {
-        //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
-        JTextField fieldPrenom = new JTextField(5);
-        JTextField fieldNom = new JTextField(7);
-        JTextField fieldBirth1 = new JTextField(3);
-        JTextField fieldBirth2 = new JTextField(3);
-        JTextField fieldBirth3 = new JTextField(7);
-        JTextField fieldNumSecu = new JTextField(5);
-        JTextField fieldAdresse = new JTextField(10);
-        //création des JLabels
-        JLabel labelNom = new JLabel("Nom :");
-        JLabel labelPrenom = new JLabel("Prénom :");
-        JLabel labelBirth = new JLabel("Date de naissance :");
-        JLabel labelAdresse = new JLabel("Adresse :");
-        JLabel labelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
-        //création du JPanel
-        JPanel myPanel = new JPanel();
+    public void ajouterPatient(Patient p) {
+        /*
+         //creation des JTextFields pour récupérer les renseignements du patient et du JPanel
+         JTextField fieldPrenom = new JTextField(5);
+         JTextField fieldNom = new JTextField(7);
+         JTextField fieldBirth1 = new JTextField(3);
+         JTextField fieldBirth2 = new JTextField(3);
+         JTextField fieldBirth3 = new JTextField(7);
+         JTextField fieldNumSecu = new JTextField(5);
+         JTextField fieldAdresse = new JTextField(10);
+         //création des JLabels
+         JLabel labelNom = new JLabel("Nom :");
+         JLabel labelPrenom = new JLabel("Prénom :");
+         JLabel labelBirth = new JLabel("Date de naissance :");
+         JLabel labelAdresse = new JLabel("Adresse :");
+         JLabel labelNumSecu = new JLabel("Numéro de sécurité sociale (13 chiffres) :");
+         //création du JPanel
+         JPanel myPanel = new JPanel();
 
-        //création d'un panel pour les 3 JTextField de la date de naissance
-        JPanel panelBirth = new JPanel();
-        panelBirth.setLayout(new FlowLayout());
-        panelBirth.add(fieldBirth1);
-        panelBirth.add(fieldBirth2);
-        panelBirth.add(fieldBirth3);
+         //création d'un panel pour les 3 JTextField de la date de naissance
+         JPanel panelBirth = new JPanel();
+         panelBirth.setLayout(new FlowLayout());
+         panelBirth.add(fieldBirth1);
+         panelBirth.add(fieldBirth2);
+         panelBirth.add(fieldBirth3);
 
-        //organisation de la fenêtre d'entrée utilisateur
-        myPanel.setLayout(new GridLayout(5, 2));
-        myPanel.add(labelNom);
-        myPanel.add(fieldNom);
-        myPanel.add(labelPrenom);
-        myPanel.add(fieldPrenom);
-        myPanel.add(labelBirth);
-        myPanel.add(panelBirth);
-        myPanel.add(labelAdresse);
-        myPanel.add(fieldAdresse);
-        myPanel.add(labelNumSecu);
-        myPanel.add(fieldNumSecu);
+         //organisation de la fenêtre d'entrée utilisateur
+         myPanel.setLayout(new GridLayout(5, 2));
+         myPanel.add(labelNom);
+         myPanel.add(fieldNom);
+         myPanel.add(labelPrenom);
+         myPanel.add(fieldPrenom);
+         myPanel.add(labelBirth);
+         myPanel.add(panelBirth);
+         myPanel.add(labelAdresse);
+         myPanel.add(fieldAdresse);
+         myPanel.add(labelNumSecu);
+         myPanel.add(fieldNumSecu);
 
-        //instanciation de la fenêtre d'entrée utilisateur
-        int result = JOptionPane.showConfirmDialog(null, myPanel,
-                "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.OK_OPTION) {
-            Patient p = new Patient(fieldNom.getText(), fieldPrenom.getText(), new Date(Integer.parseInt(fieldBirth1.getText()), Integer.parseInt(fieldBirth2.getText()), Integer.parseInt(fieldBirth3.getText())), Long.parseLong(fieldNumSecu.getText()), fieldAdresse.getText());
-            patients.addElement(p);
-            System.out.println("Patient ajouté !");
-        }//end if
+         //instanciation de la fenêtre d'entrée utilisateur
+         int result = JOptionPane.showConfirmDialog(null, myPanel,
+         "Veuillez entrer les détails du patient :", JOptionPane.OK_CANCEL_OPTION);
+         if (result == JOptionPane.OK_OPTION) {
+         Patient p = new Patient(fieldNom.getText(), fieldPrenom.getText(), new Date(Integer.parseInt(fieldBirth1.getText()), Integer.parseInt(fieldBirth2.getText()), Integer.parseInt(fieldBirth3.getText())), Long.parseLong(fieldNumSecu.getText()), fieldAdresse.getText());
+         */
+        patients.addElement(p);
+        System.out.println("Patient ajouté !");
+        //}//end if
     }
 
     public void retirerPatient(Patient p) {
@@ -354,7 +356,7 @@ public class DossierMedical {
             }//end if/else
         }//end if
     }
-    
+
     public void retirerMedecin(Medecin m) {
         medecins.removeElement(m);
         m = null;

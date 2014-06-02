@@ -5,15 +5,25 @@
  */
 package princetonPlainsboroInterface;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import princetonPlainsboro.*;
 
 public class DossierPatient extends javax.swing.JFrame {
 
     private final DossierPatientListener dpl;
+    private ListeMedecinMedical lmm;
+    private MenuMedical mm;
+    private FicheDeSoins fds;
+    private NouvelleAdmission na;
     private DossierMedical dm;
 
     public DossierPatient() {
@@ -121,7 +131,7 @@ public class DossierPatient extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -191,7 +201,7 @@ public class DossierPatient extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -310,10 +320,7 @@ public class DossierPatient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    Object getJList3() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     public class DossierPatientListener implements ActionListener {
 
         @Override
@@ -322,25 +329,25 @@ public class DossierPatient extends javax.swing.JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                NouvelleAdmission na = new NouvelleAdmission();
+                na = new NouvelleAdmission();
                 na.setBounds(positionFenetre);
+                na.setDM(dm);
+                na.getJList3().setModel(dm.getPatients());
                 na.setVisible(true);
                 setVisible(false);
             } else if (source == jButton2) {
-                MenuMedical mm = new MenuMedical();
+                mm = new MenuMedical();
                 mm.setBounds(positionFenetre);
+                mm.setDM(dm);
                 mm.setVisible(true);
                 setVisible(false);
             } else if (source == jButton3) {
-                FicheDeSoins fds = new FicheDeSoins();
+                fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
+                fds.setDM(dm);
+                fds.getJTextArea1().setText(dm.afficher());
                 fds.setVisible(true);
                 setVisible(false);
-            } else if (source == jButton4) {
-                //méthode ajouterPatient(); de DossierMecical
-                dm.ajouterPatient();
-                //fenêtre de confirmation à ajouter "Patient ajouté"
-                repaint();
             } else if (source == jButton5) {
                 //méthode retirerPatient(Patient p); de DossierMedical
                 //fenêtre de confirmation à ajoute "Patient retiré"
@@ -350,13 +357,17 @@ public class DossierPatient extends javax.swing.JFrame {
                 //fenêtre de confirmation à ajouter "Acte retiré"
                 repaint();
             } else if (source == jButton8) {
-                FicheDeSoins fds = new FicheDeSoins();
+                fds = new FicheDeSoins();
                 fds.setBounds(positionFenetre);
+                fds.setDM(dm);
+                fds.getJTextArea1().setText(dm.afficher());
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton9) {
-                ListeMedecinMedical lmm = new ListeMedecinMedical();
+                lmm = new ListeMedecinMedical();
                 lmm.setBounds(positionFenetre);
+                lmm.setDM(dm);
+                lmm.getJList1().setModel(dm.getMedecins());
                 lmm.setVisible(true);
                 setVisible(false);
             } else if (source == jButton10) {
