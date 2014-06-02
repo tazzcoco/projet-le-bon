@@ -2,6 +2,7 @@ package princetonPlainsboro;
 
 import java.text.DecimalFormat;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 
 public class FicheDeSoins {
 
@@ -9,14 +10,14 @@ public class FicheDeSoins {
     private Patient patient;
     private Medecin medecin;
     private Date date;
-    private Vector<Acte> actes;       // contient des objets de classe 'Acte'
+    private DefaultListModel<Acte> actes;       // contient des objets de classe 'Acte'
 
     //constructeur
     public FicheDeSoins(Patient patient, Medecin medecin, Date date) {
         this.patient = patient;
         this.medecin = medecin;
         this.date = date;
-        actes = new Vector<Acte>();   // liste vide
+        actes = new DefaultListModel();   // liste vide
     }
 
     //accesseurs
@@ -33,16 +34,16 @@ public class FicheDeSoins {
     }
 
     public void ajouterActe(Acte acte) {
-        actes.add(acte);
+        actes.addElement(acte);
     }
 
     public void ajouterActe(Code code, int coefficient) {
         Acte acte = new Acte(code, coefficient);
-        actes.add(acte);
+        actes.addElement(acte);
     }
     
     public void supprimerActe(Acte acte){
-        actes.remove(acte); 
+        actes.removeElement(acte); 
     }
 
     //affichage d'une fiche de soins
