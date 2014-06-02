@@ -296,7 +296,6 @@ public class ListeMédecinsAdministratif extends javax.swing.JFrame {
                     dma = new DossierMédecinAdministratif();
                     dma.getJTextArea1().setText(dm.getMedecins().get(i).afficherDM());
                     dma.setDM(dm);
-                    //dmm.getJList3().setModel(dm.getPatients());
                     dma.setVisible(true);
                     setVisible(false);
                 }

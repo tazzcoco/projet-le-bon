@@ -2,15 +2,16 @@ package princetonPlainsboroInterface;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import princetonPlainsboro.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import princetonPlainsboro.*;
 
 /**
  *
@@ -28,8 +29,11 @@ public class MenuMedical extends JFrame {
 
     public MenuMedical() {
         initComponents();
-        LectureXML test = new LectureXML("dossiers.xml");
-        dm = test.getDossier();
+        //LectureXML test = new LectureXML("dossiers.xml");
+        //dm = test.getDossier();
+        dm = new DossierMedical();
+        Patient p = new Patient("Riviere","Tommy",new Date(23,9,1994),1234567891,"20 rue Barnave\n38000 Grenoble\nFrance");
+        dm.ajouterPatient(p);
         setLocationRelativeTo(getParent());
         mml = new MenuMedicalListener();
         jButton1.addActionListener(mml);
@@ -300,6 +304,8 @@ public class MenuMedical extends JFrame {
                 fds.setBounds(positionFenetre);
                 fds.setDM(dm);
                 fds.getJTextArea1().setText(dm.afficher());
+                DefaultComboBoxModel cbModel = new DefaultComboBoxModel(dm.getPatients().toArray());
+                fds.getJComboBox1().setModel(cbModel);
                 fds.setVisible(true);
                 setVisible(false);
             } else if (source == jButton5) {
