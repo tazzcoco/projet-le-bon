@@ -55,7 +55,7 @@ public class FicheDeSoins {
         s += "\n- actes medicaux :";
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);
-            s += "    > " + a.toString();
+            s += "\n    > " + a.toString();
         }
         s += "\n> Cout total des soins : " + dec.format(coutTotal());
         s += "\n------------------------";

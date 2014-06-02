@@ -22,7 +22,7 @@ public class DossierPatient extends javax.swing.JFrame {
     private final DossierPatientListener dpl;
     private ListeMedecinMedical lmm;
     private MenuMedical mm;
-    private FicheDeSoins fds;
+    private princetonPlainsboroInterface.FicheDeSoins fds;
     private NouvelleAdmission na;
     private DossierMedical dm;
 

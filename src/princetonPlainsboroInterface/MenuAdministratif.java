@@ -223,7 +223,7 @@ public class MenuAdministratif extends javax.swing.JFrame {
             Rectangle positionFenetre = getBounds();
 
             if (source == jButton1) {
-                ListePatientsAdministratif lpa = new ListePatientsAdministratif();
+                lpa = new ListePatientsAdministratif();
                 lpa.setBounds(positionFenetre);
                 lpa.setDM(dm);
                 lpa.getjList2().setModel(dm.getPatients());
